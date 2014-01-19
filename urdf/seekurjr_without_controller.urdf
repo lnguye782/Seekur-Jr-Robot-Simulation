@@ -66,13 +66,13 @@
     <visual>
        <origin xyz="0 0 0" rpy="0 0 0" />
        <geometry>
-	 <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_body.dae"/>
+	 <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_body_new_low.stl"/>
        </geometry>
     </visual>
     <collision>
        <origin xyz="0 0 0.06" rpy="0 0 0 " />
        <geometry>
-         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_body.dae"/>
+         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_body_new_low.stl"/>
 	 <!-- box size = "1.0 0.4 0.2"/ -->
        </geometry>
     </collision>     
@@ -93,7 +93,7 @@
     <visual>
        <origin xyz="0 0 0" rpy="0 0 3.1416" /> 
        <geometry>
-	 <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_wheel_full.stl"/>
+	 <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_wheel_bl.stl"/>
        </geometry>
 	<material name="grey">
 		<color rgba="0.3 0.3 0.3 1"/>
@@ -102,7 +102,7 @@
     <collision>
        <origin xyz="0 0 0" rpy="0 0 0" />
        <geometry>
-         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_wheel_full.stl"/>
+         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_wheel_bl.stl"/>
        </geometry>
     </collision>
   </link>
@@ -136,7 +136,7 @@
     <visual>
        <origin xyz="0 0 0" rpy="0 0 0" /> 
        <geometry>
-         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_wheel_full.stl"/>
+         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_wheel_br.stl"/>
        </geometry>
 	<material name="gray">
 		<color rgba="0.3 0.3 0.3 1"/>
@@ -145,7 +145,7 @@
     <collision>
        <origin xyz="0 0 0" rpy="0 0 0" /> 
        <geometry>
-         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_wheel_full.stl"/>
+         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_wheel_br.stl"/>
        </geometry>
     </collision>
   </link>
@@ -178,7 +178,7 @@
     <visual>
        <origin xyz="0 0 0" rpy="0 0 3.1416" /> 
        <geometry>
-         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_wheel_full.stl"/>
+         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_wheel_fl.stl"/>
        </geometry>
 	<material name="grey">
 		<color rgba="0.3 0.3 0.3 1"/>
@@ -187,7 +187,7 @@
     <collision>
        <origin xyz="0 0 0" rpy="0 0 0" /> 
        <geometry>
-         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_wheel_full.stl"/>
+         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_wheel_fl.stl"/>
        </geometry>
     </collision>
   </link>
@@ -220,7 +220,7 @@
     <visual>
        <origin xyz="0 0 0" rpy="0 0 0" /> 
        <geometry>
-         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_wheel_full.stl"/>
+         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_wheel_fr.stl"/>
        </geometry>
 	<material name="grey">
 		<color rgba="0.3 0.3 0.3 1"/>
@@ -229,7 +229,7 @@
     <collision>
        <origin xyz="0 0 0" rpy="0 0 0" /> 
        <geometry>
-         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_wheel_full.stl"/> 
+         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_wheel_fr.stl"/> 
        </geometry>
     </collision>
   </link>
@@ -266,6 +266,13 @@
        <origin xyz="0 0 0" rpy="0 0 0" />
        <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0001" />
     </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <!--box size="0.05 0.05 0.1" /-->
+	<mesh filename= "package://seekurjr_gazebo/meshes/seekurjr_lms1xx_low.stl" scale="0.5 0.5 0.5"/>
+      </geometry>
+    </visual>
   </link>
 
   <!-- This adds a visual box to allow us to see the Hokuyo in rviz/gazebo -->

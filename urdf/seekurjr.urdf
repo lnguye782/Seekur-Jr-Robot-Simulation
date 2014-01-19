@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<robot name="seekurjr" 
+
+       xmlns:xi="http://www.w3.org/2001/XInclude"
+       xmlns:gazebo="http://playerstage.sourceforge.net/gazebo/xmlschema/#gz"
+       xmlns:model="http://playerstage.sourceforge.net/gazebo/xmlschema/#model"
+       xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+       xmlns:body="http://playerstage.sourceforge.net/gazebo/xmlschema/#body"
+       xmlns:geom="http://playerstage.sourceforge.net/gazebo/xmlschema/#geom"
+       xmlns:joint="http://playerstage.sourceforge.net/gazebo/xmlschema/#joint"
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+       xmlns:rendering="http://playerstage.sourceforge.net/gazebo/xmlschema/#rendering"
+       xmlns:renderable="http://playerstage.sourceforge.net/gazebo/xmlschema/#renderable"
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+       xmlns:physics="http://playerstage.sourceforge.net/gazebo/xmlschema/#physics">
+
+  <!-- BASE FOOTPRINT -->
+  <!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link origin,navigation stack depends on this frame -->
+
+
+  <!-- BASE_LINK (RED) -->
+  <link name="base_link">
+    <inertial>
+      <mass value="70.0" />
+      <origin xyz="0 0 0" />
+      <inertia  ixx="1" ixy="0"  ixz="0"  iyy="1"  iyz="0"  izz="1" />
+    </inertial>
+    <visual>
+       <origin xyz="0 0 0" rpy="0 0 0" />
+       <geometry>
+	 <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_body_new_low.stl"/>
+       </geometry>
+    </visual>
+    <collision>
+       <origin xyz="0 0 0.0" rpy="0 0 0 " />
+       <geometry>
+         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_body_new_low.stl"/>
+	 <!-- box size = "1.0 0.4 0.2"/ -->
+       </geometry>
+    </collision>     
+  </link>
+  <gazebo reference="base_link">
+    <material>Gazebo/Blue</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+<!--
+http://answers.gazebosim.org/question/4372/the-inertia-matrix-explained/
+
+Meshlab: seekurjr_body_new_low.stl
+Mesh Volume is 155760256.000000
+Mesh Surface is 4038439.750000
+Thin shell barycenter 8.409724 247.537674 -3.138560
+Center of Mass is 6.480556 131.015488 -45.919720
+Inertia Tensor is :
+| 11264990380032.000000 -130955894784.000000 -315909963776.000000 |
+| -130955894784.000000 11355918696448.000000 -769257701376.000000 |
+| -315909963776.000000 -769257701376.000000 5312563118080.000000 |
+Principal axes are :
+| 0.916011 -0.397463 0.054284 |
+| 0.388693 0.912860 0.124917 |
+| -0.099203 -0.093326 0.990681 |
+axis momenta are :
+| 11243634032640.000000 11491582410752.000000 5198255751168.000000 |
+-->
