@@ -20,30 +20,40 @@
 
   <!-- BASE_LINK (RED) -->
   <link name="base_link">
+
     <inertial>
       <mass value="70.0" />
-      <origin xyz="0 0 0" />
-      <inertia  ixx="1" ixy="0"  ixz="0"  iyy="1"  iyz="0"  izz="1" />
+      <origin xyz="0 0 1" />
+      <inertia  ixx="0.001" ixy="0"  ixz="0"  iyy="0.001"  iyz="0"  izz="0.001" />
     </inertial>
+
     <visual>
-       <origin xyz="0 0 0" rpy="0 0 0" />
+       <origin xyz="0 0 1" rpy="0 90 0" />
        <geometry>
-	 <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_body_new_low.stl"/>
+	 <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_body_new_low.stl" scale="0.001 0.001 0.001"/>
        </geometry>
     </visual>
+
     <collision>
-       <origin xyz="0 0 0.0" rpy="0 0 0 " />
+       <origin xyz="0 0 1" rpy="0 90 0 " />
        <geometry>
-         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_body_new_low.stl"/>
+         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_body_new_low.stl" scale="0.001 0.001 0.001"/>
 	 <!-- box size = "1.0 0.4 0.2"/ -->
        </geometry>
     </collision>     
+
   </link>
+
   <gazebo reference="base_link">
     <material>Gazebo/Blue</material>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
 <!--
+http://answers.ros.org/question/30539/choosing-the-right-coefficients-for-gazebo-simulation/
+
+http://wiki.ros.org/urdf/Tutorials/Adding%20Physical%20and%20Collision%20Properties%20to%20a%20URDF%20Model
+
+
 http://answers.gazebosim.org/question/4372/the-inertia-matrix-explained/
 
 Meshlab: seekurjr_body_new_low.stl
@@ -62,3 +72,148 @@ Principal axes are :
 axis momenta are :
 | 11243634032640.000000 11491582410752.000000 5198255751168.000000 |
 -->
+
+<!-- BAMPER -->
+<!--
+<gazebo>
+  <plugin name="${name}_gazebo_ros_bumper_controller" filename="libgazebo_ros_bumper.so">
+    <alwaysOn>true</alwaysOn>
+    <updateRate>${update_rate}</updateRate>
+    <bumperTopicName>${name}_bumper</bumperTopicName>
+    <frameName>world</frameName>
+  </plugin>
+</gazebo>
+-->
+
+<!-- SKID-STEERING CONTROLLER -->
+
+<!-- 
+http://answers.ros.org/question/61712/how-to-use-libgazebo_ros_cameraso-in-gazebo-urdf/
+-->
+
+<!--
+<gazebo>
+  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+    <updateRate>100.0</updateRate>
+    <robotNamespace>/</robotNamespace>
+    <leftFrontJoint>front_left_wheel_joint</leftFrontJoint>
+    <rightFrontJoint>front_right_wheel_joint</rightFrontJoint>
+    <leftRearJoint>back_left_wheel_joint</leftRearJoint>
+    <rightRearJoint>back_right_wheel_joint</rightRearJoint>
+    <wheelSeparation>0.4</wheelSeparation>
+    <wheelDiameter>0.215</wheelDiameter>
+    <robotBaseFrame>base_link</robotBaseFrame>
+    <torque>20</torque>
+    <topicName>cmd_vel</topicName>
+    <broadcastTF>false</broadcastTF>
+  </plugin>
+</gazebo>
+<gazebo>
+  <plugin name="SkidSteerDrivePlugin" filename="libSkidSteerDrivePlugin.so">
+      <right_front>p3at_front_right_wheel_joint</right_front>
+      <right_rear>p3at_back_right_wheel_joint</right_rear>
+      <left_front>p3at_front_left_wheel_joint</left_front>
+      <left_rear>p3at_back_left_wheel_joint</left_rear>
+      <max_force>5.0</max_force>
+  </plugin>
+</gazebo>
+-->
+
+<!-- IMU -->
+
+<!--
+  <gazebo reference="imu_link">
+    
+    
+    <sensor name="imu_sensor" type="imu">
+      <always_on>1</always_on>
+      <update_rate>1000.0</update_rate>
+      <imu>
+        <noise>
+          <type>gaussian</type>
+          
+          <rate>
+            <mean>0.0</mean>
+            <stddev>2e-4</stddev>
+            <bias_mean>0.0000075</bias_mean>
+            <bias_stddev>0.0000008</bias_stddev>
+          </rate>
+          <accel>
+            <mean>0.0</mean>
+            <stddev>1.7e-2</stddev>
+            <bias_mean>0.1</bias_mean>
+            <bias_stddev>0.001</bias_stddev>
+          </accel>
+        </noise>
+      </imu>
+    </sensor>
+  </gazebo>
+-->
+
+<!--
+http://answers.ros.org/question/12430/modelling-sensorsimu-in-gazebo/
+-->
+
+<!--
+ <joint name="imu_joint" type="fixed">
+    <axis xyz="1 0 0"/> 
+    <origin xyz="0 0 0.19"/>
+    <parent link="base_link"/>
+    <child link="imu_link"/> 
+ </joint>
+-->
+
+<!--
+<link name="imu_link">
+  <inertial>
+    <mass value="0.001"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0001"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <box size="0.001 0.001 0.001"/>
+    </geometry>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <box size=".001 .001 .001"/>
+    </geometry>
+  </collision>
+</link>
+-->
+
+<!--
+<gazebo>
+  <controller:gazebo_ros_imu name="imu_controller" plugin="libgazebo_ros_imu.so">
+    <alwaysOn>true</alwaysOn>
+    <updateRate>50.0</updateRate> 
+    <bodyName>imu_link</bodyName>
+    <topicName>imu_data</topicName>
+    <gaussianNoise>2.89e-08</gaussianNoise>
+    <xyzOffsets>0 0 0</xyzOffsets>
+    <rpyOffsets>0 0 0</rpyOffsets>
+    <interface:position name="imu_position"/>
+  </controller:gazebo_ros_imu>
+</gazebo>
+-->
+
+
+<!-- LASER -->
+ 
+<!--
+    http://gazebosim.org/wiki/Tutorials/1.9/ROS_Motor_and_Sensor_Plugins
+-->
+
+<sensor type="ray" name="head_hokuyo_sensor">
+<plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+
+
+<!-- STEREOCAM -->
+
+<!--
+http://answers.ros.org/question/61712/how-to-use-libgazebo_ros_cameraso-in-gazebo-urdf/
+-->
+
