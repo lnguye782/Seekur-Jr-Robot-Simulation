@@ -23,24 +23,24 @@
 
     <inertial>
       <mass value="70.0" />
-      <origin xyz="0 0 1" />
-      <inertia  ixx="0.001" ixy="0"  ixz="0"  iyy="0.001"  iyz="0"  izz="0.001" />
+      <origin xyz="0 0 0.01" />
+      <inertia  ixx="7.8864" ixy="0"  ixz="0"  iyy="10.5430"  iyz="0"  izz="5.5721" />
     </inertial>
 
     <visual>
-       <origin xyz="0 0 1" rpy="0 90 0" />
+       <origin xyz="0 0 0" rpy="1.57 0 0" />
        <geometry>
 	 <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_body_new_low.stl" scale="0.001 0.001 0.001"/>
        </geometry>
     </visual>
 
     <collision>
-       <origin xyz="0 0 1" rpy="0 90 0 " />
+       <origin xyz="0 0 0" rpy="1.57 0 0" />
        <geometry>
          <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_body_new_low.stl" scale="0.001 0.001 0.001"/>
-	 <!-- box size = "1.0 0.4 0.2"/ -->
        </geometry>
     </collision>     
+
 
   </link>
 
