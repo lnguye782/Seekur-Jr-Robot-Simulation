@@ -22,20 +22,20 @@
   <link name="base_link">
 
     <inertial>
-      <mass value="70.0" />
-      <origin xyz="0 0 0.01" />
-      <inertia  ixx="7.8864" ixy="0"  ixz="0"  iyy="10.5430"  iyz="0"  izz="5.5721" />
+      <mass value="77.0" />
+      <origin xyz="0 0 0.01" rpy="1.570796 0 1.570796"/>
+      <inertia  ixx="8.6785" ixy="0"  ixz="0"  iyy="11.602"  iyz="0"  izz="8.6785" />
     </inertial>
 
     <visual>
-       <origin xyz="0 0 0" rpy="1.57 0 0" />
+       <origin xyz="0 0 0" rpy="1.570796 0 1.570796" />
        <geometry>
 	 <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_body_new_low.stl" scale="0.001 0.001 0.001"/>
        </geometry>
     </visual>
 
     <collision>
-       <origin xyz="0 0 0" rpy="1.57 0 0" />
+       <origin xyz="0 0 0" rpy="1.570796 0 1.570796" />
        <geometry>
          <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_body_new_low.stl" scale="0.001 0.001 0.001"/>
        </geometry>
@@ -48,80 +48,98 @@
     <material>Gazebo/Blue</material>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
-<!--
-http://answers.ros.org/question/30539/choosing-the-right-coefficients-for-gazebo-simulation/
+ 
+<!-- LASER -->
 
-http://wiki.ros.org/urdf/Tutorials/Adding%20Physical%20and%20Collision%20Properties%20to%20a%20URDF%20Model
+  <link name="lms1xx_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+         <box size="0.1 0.1 0.1"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+           <mesh filename="package://seekurjr_gazebo/meshes/lms100.dae" scale="2 2 2" />
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+ 
+ <joint name="lms1xx_joint" type="fixed">
+    <axis xyz="1 0 0" />
+    <origin xyz="0.52 0.0 0.24" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="lms1xx_link"/>
+  </joint>
+
+  <gazebo reference="lms1xx_link">
+    <sensor type="ray" name="laser">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-2.26889</min_angle>
+            <max_angle>2.2689</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>30.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>-->
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true reading. -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      </sensor>
+  </gazebo>
 
 
-http://answers.gazebosim.org/question/4372/the-inertia-matrix-explained/
+<link name="imu_link">
+  <inertial>
+    <mass value="0.001"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0001"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <box size="0.1 0.1 0.1"/>
+    </geometry>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <box size=".001 .001 .001"/>
+    </geometry>
+  </collision>
+</link>
 
-Meshlab: seekurjr_body_new_low.stl
-Mesh Volume is 155760256.000000
-Mesh Surface is 4038439.750000
-Thin shell barycenter 8.409724 247.537674 -3.138560
-Center of Mass is 6.480556 131.015488 -45.919720
-Inertia Tensor is :
-| 11264990380032.000000 -130955894784.000000 -315909963776.000000 |
-| -130955894784.000000 11355918696448.000000 -769257701376.000000 |
-| -315909963776.000000 -769257701376.000000 5312563118080.000000 |
-Principal axes are :
-| 0.916011 -0.397463 0.054284 |
-| 0.388693 0.912860 0.124917 |
-| -0.099203 -0.093326 0.990681 |
-axis momenta are :
-| 11243634032640.000000 11491582410752.000000 5198255751168.000000 |
--->
+<joint name="imu_joint" type="fixed">
+	<axis xyz="1 0 0"/> <!-- 0 1 0 -->
+	<origin xyz="0 0 0.19"/>
+	<parent link="base_link"/>
+	<child link="imu_link"/>
+</joint>
 
-<!-- BAMPER -->
-<!--
-<gazebo>
-  <plugin name="${name}_gazebo_ros_bumper_controller" filename="libgazebo_ros_bumper.so">
-    <alwaysOn>true</alwaysOn>
-    <updateRate>${update_rate}</updateRate>
-    <bumperTopicName>${name}_bumper</bumperTopicName>
-    <frameName>world</frameName>
-  </plugin>
-</gazebo>
--->
 
-<!-- SKID-STEERING CONTROLLER -->
-
-<!-- 
-http://answers.ros.org/question/61712/how-to-use-libgazebo_ros_cameraso-in-gazebo-urdf/
--->
-
-<!--
-<gazebo>
-  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
-    <updateRate>100.0</updateRate>
-    <robotNamespace>/</robotNamespace>
-    <leftFrontJoint>front_left_wheel_joint</leftFrontJoint>
-    <rightFrontJoint>front_right_wheel_joint</rightFrontJoint>
-    <leftRearJoint>back_left_wheel_joint</leftRearJoint>
-    <rightRearJoint>back_right_wheel_joint</rightRearJoint>
-    <wheelSeparation>0.4</wheelSeparation>
-    <wheelDiameter>0.215</wheelDiameter>
-    <robotBaseFrame>base_link</robotBaseFrame>
-    <torque>20</torque>
-    <topicName>cmd_vel</topicName>
-    <broadcastTF>false</broadcastTF>
-  </plugin>
-</gazebo>
-<gazebo>
-  <plugin name="SkidSteerDrivePlugin" filename="libSkidSteerDrivePlugin.so">
-      <right_front>p3at_front_right_wheel_joint</right_front>
-      <right_rear>p3at_back_right_wheel_joint</right_rear>
-      <left_front>p3at_front_left_wheel_joint</left_front>
-      <left_rear>p3at_back_left_wheel_joint</left_rear>
-      <max_force>5.0</max_force>
-  </plugin>
-</gazebo>
--->
-
-<!-- IMU -->
-
-<!--
   <gazebo reference="imu_link">
     
     
@@ -148,72 +166,79 @@ http://answers.ros.org/question/61712/how-to-use-libgazebo_ros_cameraso-in-gazeb
       </imu>
     </sensor>
   </gazebo>
--->
 
-<!--
-http://answers.ros.org/question/12430/modelling-sensorsimu-in-gazebo/
--->
 
-<!--
- <joint name="imu_joint" type="fixed">
-    <axis xyz="1 0 0"/> 
-    <origin xyz="0 0 0.19"/>
+  <joint name="camera_joint" type="fixed">
+    <axis xyz="1 0 0"/> <!-- 0 1 0 -->
+    <origin xyz="0.42 0 0.41" rpy="0 0 0"/>
     <parent link="base_link"/>
-    <child link="imu_link"/> 
- </joint>
--->
+    <child link="camera_link"/>
+  </joint>
 
-<!--
-<link name="imu_link">
-  <inertial>
-    <mass value="0.001"/>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0001"/>
-  </inertial>
-  <visual>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <geometry>
-      <box size="0.001 0.001 0.001"/>
-    </geometry>
-  </visual>
-  <collision>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <geometry>
-      <box size=".001 .001 .001"/>
-    </geometry>
-  </collision>
-</link>
--->
+    <link name="camera_link">
+      <inertial>
+        <mass value="0.001" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.04 0.16 0.04" />
+        </geometry>
+        <material name="Yellow">
+          <color rgba="0.0 0.0 0.8 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.04 0.16 0.04" />
+        </geometry>
+      </collision>
+    </link>
 
-<!--
-<gazebo>
-  <controller:gazebo_ros_imu name="imu_controller" plugin="libgazebo_ros_imu.so">
-    <alwaysOn>true</alwaysOn>
-    <updateRate>50.0</updateRate> 
-    <bodyName>imu_link</bodyName>
-    <topicName>imu_data</topicName>
-    <gaussianNoise>2.89e-08</gaussianNoise>
-    <xyzOffsets>0 0 0</xyzOffsets>
-    <rpyOffsets>0 0 0</rpyOffsets>
-    <interface:position name="imu_position"/>
-  </controller:gazebo_ros_imu>
-</gazebo>
--->
+    
+    <joint name="camera_optical_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="-1.570796 0.0 -1.570796" />
+      <parent link="camera_link" />
+      <child link="camera_optical_frame"/>
+    </joint>
+  
+    <link name="camera_optical_frame"/>
+    
+    <gazebo reference="camera_link">
+      <sensor type="camera" name="camera_camera_sensor">
+        <update_rate>15</update_rate>
+        <camera>
+          <horizontal_fov angle='1.57079633'/>
+          <image>
+            <format>R8G8B8</format>
+            <width>320</width>
+            <height>240</height>
+          </image>
+          <clip>
+            <near>0.01</near>
+            <far>100</far>
+          </clip>
+        </camera>
+
+        <plugin name="camera_camera_controller" filename="libgazebo_ros_camera.so">
+          <cameraName>camera</cameraName>
+          <alwaysOn>true</alwaysOn>
+          <updateRate>15</updateRate>
+          <imageTopicName>left/image_raw</imageTopicName>
+          <cameraInfoTopicName>left/camera_info</cameraInfoTopicName>
+          <frameName>camera_optical_frame</frameName>
+        </plugin>
+      </sensor>
+    </gazebo>
+    
+    
 
 
-<!-- LASER -->
- 
-<!--
-    http://gazebosim.org/wiki/Tutorials/1.9/ROS_Motor_and_Sensor_Plugins
--->
-
-<sensor type="ray" name="head_hokuyo_sensor">
-<plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+</robot>
 
 
-<!-- STEREOCAM -->
 
-<!--
-http://answers.ros.org/question/61712/how-to-use-libgazebo_ros_cameraso-in-gazebo-urdf/
--->
 
