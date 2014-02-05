@@ -56,6 +56,39 @@ iyy = 1/12*m*(w^2+d^2)
 izz = 1/12*m*(h^2+d^2) 
 ~~~
 
+~~~
+<inertia  ixx="8.6785" ixy="0"  ixz="0"  iyy="11.602"  iyz="0"  izz="8.6785" />
+~~~
+
+~~~
+Opened mesh /home/kp/rosws/catkin/src/seekurjr_gazebo/meshes/seekurjr_body_new_low.stl in 15 msec
+All files opened in 1902 msec
+Mesh Bounding Box Size 0.627341 0.394017 1.197709
+Mesh Bounding Box Diag 1.408301 
+Mesh Volume is 0.155966
+Mesh Surface is 4.018419
+Thin shell barycenter 0.008623 0.248038 -0.001686
+Center of Mass is 0.006557 0.130922 -0.038411
+Inertia Tensor is :
+| 0.011083 -0.000132 -0.000303 |
+| -0.000132 0.011182 -0.000597 |
+| -0.000303 -0.000597 0.005307 |
+Principal axes are :
+| 0.885792 -0.460959 0.053744 |
+| 0.454450 0.885044 0.100860 |
+| -0.094058 -0.064917 0.993448 |
+axis momenta are :
+| 0.011047 0.011294 0.005230 |
+Applied filter Compute Geometric Measures in 12 msec
+~~~
+
+~~~
+      <inertia  ixx="0.011083" ixy="-0.000132"  ixz="-0.000303"  iyy="0.011182"  iyz="-0.000597"  izz="0.005307" />
+~~~
+
+
+
+~~~
 <!--
     http://gazebosim.org/wiki/Tutorials/1.9/ROS_Motor_and_Sensor_Plugins
 -->
@@ -372,4 +405,8 @@ http://answers.ros.org/question/61712/how-to-use-libgazebo_ros_cameraso-in-gazeb
     <interface:position name="imu_position"/>
   </controller:gazebo_ros_imu>
 </gazebo>
+
+
+
+~~~
 

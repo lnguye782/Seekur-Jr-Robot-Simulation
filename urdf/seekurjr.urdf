@@ -22,9 +22,9 @@
   <link name="base_link">
 
     <inertial>
-      <mass value="77.0" />
-      <origin xyz="0 0 0.177" rpy="1.570796 0 1.570796"/>
-      <inertia  ixx="8.6785" ixy="0"  ixz="0"  iyy="11.602"  iyz="0"  izz="8.6785" />
+      <mass value="70.0" />
+      <origin xyz="0 0 0" rpy="1.570796 0 1.570796"/>
+      <inertia  ixx="0.011083" ixy="-0.000132"  ixz="-0.000303"  iyy="0.011182"  iyz="-0.000597"  izz="0.005307" />
     </inertial>
 
     <visual>
@@ -254,12 +254,19 @@
          <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_left_side_wheel_low2.stl" scale="1 1 1"/>
        </geometry>
       </collision>   
+    <inertial>
+      <mass value="1.75" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.000195" ixy="0" ixz="0" iyy="0.000327" iyz="0" izz="0.000195" />
+    </inertial>
 </link>
 
-<joint name="bl_wheel_joint" type="fixed">
+<joint name="bl_wheel_joint" type="revolute">
 <origin xyz="-0.215 0.32 0.083" rpy="0 0 0"/>
 <parent link="base_link"/>
 <child link="bl_wheel"/>
+<axis xyz="0 1 0"/>>
+<limit effort="30" velocity="1.0"  lower="-100" upper="100" />
 </joint>
 
 <link name="fl_wheel">
@@ -278,12 +285,19 @@
          <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_left_side_wheel_low2.stl" scale="1 1 1"/>
        </geometry>
       </collision>
+    <inertial>
+      <mass value="1.75" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.000195" ixy="0" ixz="0" iyy="0.000327" iyz="0" izz="0.000195" />
+    </inertial>
 </link>
 
-<joint name="fl_wheel_joint" type="fixed">
+<joint name="fl_wheel_joint" type="revolute">
 <origin xyz="0.215 0.32 0.083" rpy="0 0 0"/>
 <parent link="base_link"/>
 <child link="fl_wheel"/>
+<axis xyz="0 1 0"/>>
+<limit effort="30" velocity="1.0"  lower="-100" upper="100" />
 </joint>
 
 <link name="br_wheel">
@@ -302,12 +316,19 @@
          <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_right_side_wheel_low2.stl" scale="1 1 1"/>
        </geometry>
       </collision>
+    <inertial>
+      <mass value="1.75" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.000195" ixy="0" ixz="0" iyy="0.000327" iyz="0" izz="0.000195" />
+    </inertial>
 </link>
 
-<joint name="br_wheel_joint" type="fixed">
+<joint name="br_wheel_joint" type="revolute">
 <origin xyz="-0.215 -0.32 0.083" rpy="0 0 0"/>
 <parent link="base_link"/>
 <child link="br_wheel"/>
+<axis xyz="0 1 0"/>>
+<limit effort="30" velocity="1.0"  lower="-100" upper="100" />
 </joint>
 
 <link name="fr_wheel">
@@ -326,12 +347,18 @@
          <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_right_side_wheel_low2.stl" scale="1 1 1"/>
        </geometry>
       </collision> 
+    <inertial>
+      <mass value="1.75" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.000195" ixy="0" ixz="0" iyy="0.000327" iyz="0" izz="0.000195" />
+    </inertial>
 </link>
 
-<joint name="fr_wheel_joint" type="fixed">
+<joint name="fr_wheel_joint" type="revolute">
 <origin xyz="0.215 -0.32 0.083" rpy="0 0 0"/>
 <parent link="base_link"/>
 <child link="fr_wheel"/>
+<axis xyz="0 1 0"/>>
 <limit effort="30" velocity="1.0"  lower="-100" upper="100" />
 </joint>
 
