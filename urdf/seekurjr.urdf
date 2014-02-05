@@ -23,31 +23,33 @@
 
     <inertial>
       <mass value="77.0" />
-      <origin xyz="0 0 0.01" rpy="1.570796 0 1.570796"/>
+      <origin xyz="0 0 0.177" rpy="1.570796 0 1.570796"/>
       <inertia  ixx="8.6785" ixy="0"  ixz="0"  iyy="11.602"  iyz="0"  izz="8.6785" />
     </inertial>
 
     <visual>
        <origin xyz="0 0 0" rpy="1.570796 0 1.570796" />
        <geometry>
-	 <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_body_new_low.stl" scale="0.001 0.001 0.001"/>
+	 <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_body_new_low2.dae" scale="1 1 1"/>
        </geometry>
     </visual>
 
     <collision>
        <origin xyz="0 0 0" rpy="1.570796 0 1.570796" />
        <geometry>
-         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_body_new_low.stl" scale="0.001 0.001 0.001"/>
+         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_body_new_low2.stl" scale="1 1 1"/>
        </geometry>
     </collision>     
 
 
   </link>
 
+<!--
   <gazebo reference="base_link">
     <material>Gazebo/Blue</material>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
+ -->
  
 <!-- LASER -->
 
@@ -233,9 +235,129 @@
         </plugin>
       </sensor>
     </gazebo>
-    
-    
 
+<!-- WHEELS -->
+
+<link name="bl_wheel">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+				<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_left_side_wheel_low2.stl" scale="1 1 1"/>
+        </geometry>
+        <material name="WheelBlack">
+					<color rgba="0.117 0.117 0.117 1"/>
+        </material>
+      </visual>
+      <collision>
+       <origin xyz="0 0 0" rpy="0 0 0"/>
+       <geometry>
+         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_left_side_wheel_low2.stl" scale="1 1 1"/>
+       </geometry>
+      </collision>   
+</link>
+
+<joint name="bl_wheel_joint" type="fixed">
+<origin xyz="-0.215 0.32 0.083" rpy="0 0 0"/>
+<parent link="base_link"/>
+<child link="bl_wheel"/>
+</joint>
+
+<link name="fl_wheel">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+				<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_left_side_wheel_low2.stl" scale="1 1 1"/>
+        </geometry>
+        <material name="WheelBlack">
+					<color rgba="0.117 0.117 0.117 1"/>
+        </material>
+      </visual>
+      <collision>
+       <origin xyz="0 0 0" rpy="0 0 0"/>
+       <geometry>
+         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_left_side_wheel_low2.stl" scale="1 1 1"/>
+       </geometry>
+      </collision>
+</link>
+
+<joint name="fl_wheel_joint" type="fixed">
+<origin xyz="0.215 0.32 0.083" rpy="0 0 0"/>
+<parent link="base_link"/>
+<child link="fl_wheel"/>
+</joint>
+
+<link name="br_wheel">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+				<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_right_side_wheel_low2.stl" scale="1 1 1"/>
+        </geometry>
+        <material name="WheelBlack">
+					<color rgba="0.117 0.117 0.117 1"/>
+        </material>
+      </visual>
+      <collision>
+       <origin xyz="0 0 0" rpy="0 0 0"/>
+       <geometry>
+         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_right_side_wheel_low2.stl" scale="1 1 1"/>
+       </geometry>
+      </collision>
+</link>
+
+<joint name="br_wheel_joint" type="fixed">
+<origin xyz="-0.215 -0.32 0.083" rpy="0 0 0"/>
+<parent link="base_link"/>
+<child link="br_wheel"/>
+</joint>
+
+<link name="fr_wheel">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+				<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_right_side_wheel_low2.stl" scale="1 1 1"/>
+        </geometry>
+        <material name="WheelBlack">
+					<color rgba="0.117 0.117 0.117 1"/>
+        </material>
+      </visual>
+      <collision>
+       <origin xyz="0 0 0" rpy="0 0 0"/>
+       <geometry>
+         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_right_side_wheel_low2.stl" scale="1 1 1"/>
+       </geometry>
+      </collision> 
+</link>
+
+<joint name="fr_wheel_joint" type="fixed">
+<origin xyz="0.215 -0.32 0.083" rpy="0 0 0"/>
+<parent link="base_link"/>
+<child link="fr_wheel"/>
+<limit effort="30" velocity="1.0"  lower="-100" upper="100" />
+</joint>
+
+          <gazebo reference="fr_wheel">
+            <mu1>0.2</mu1>
+            <mu2>0.2</mu2>
+            <material>Gazebo/Grey</material>
+          </gazebo>
+
+          <gazebo reference="br_wheel">
+            <mu1>0.2</mu1>
+            <mu2>0.2</mu2>
+            <material>Gazebo/Grey</material>
+          </gazebo>
+
+          <gazebo reference="fl_wheel">
+            <mu1>0.2</mu1>
+            <mu2>0.2</mu2>
+            <material>Gazebo/Grey</material>
+          </gazebo>
+
+          <gazebo reference="bl_wheel">
+            <mu1>0.2</mu1>
+            <mu2>0.2</mu2>
+            <material>Gazebo/Grey</material>
+          </gazebo>
 
 </robot>
 

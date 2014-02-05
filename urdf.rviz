@@ -6,9 +6,10 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /RobotModel1
         - /RobotModel1/Links1
         - /RobotModel1/Links1/base_link1
+        - /TF1
+        - /TF1/Frames1
       Splitter Ratio: 0.5
     Tree Height: 601
   - Class: rviz/Selection
@@ -66,6 +67,45 @@ Visualization Manager:
           Show Axes: true
           Show Trail: false
           Value: true
+        bl_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        br_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        camera_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        camera_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        fl_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        fr_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        imu_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        lms1xx_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
       Name: RobotModel
       Robot Description: robot_description
       TF Prefix: ""
@@ -76,6 +116,24 @@ Visualization Manager:
       Enabled: true
       Frame Timeout: 15
       Frames:
+        /base_link:
+          Value: true
+        /bl_wheel:
+          Value: true
+        /br_wheel:
+          Value: true
+        /camera_link:
+          Value: true
+        /camera_optical_frame:
+          Value: true
+        /fl_wheel:
+          Value: true
+        /fr_wheel:
+          Value: true
+        /imu_link:
+          Value: true
+        /lms1xx_link:
+          Value: true
         All Enabled: true
       Marker Scale: 1
       Name: TF
@@ -83,7 +141,22 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        {}
+        /base_link:
+          /bl_wheel:
+            {}
+          /br_wheel:
+            {}
+          /camera_link:
+            /camera_optical_frame:
+              {}
+          /fl_wheel:
+            {}
+          /fr_wheel:
+            {}
+          /imu_link:
+            {}
+          /lms1xx_link:
+            {}
       Update Interval: 0
       Value: true
   Enabled: true
@@ -116,10 +189,10 @@ Visualization Manager:
         Z: 0.150462
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.0303979
+      Pitch: 0.525398
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.220396
+      Yaw: 5.87358
     Saved: ~
 Window Geometry:
   Displays:
@@ -137,5 +210,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1216
-  X: 46
+  X: 42
   Y: 60
