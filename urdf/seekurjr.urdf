@@ -169,6 +169,17 @@
     </sensor>
   </gazebo>
 
+  <gazebo>
+    <plugin filename="libgazebo_ros_imu.so" name="gazebo_ros_imu">
+      <bodyName>imu_link</bodyName>
+      <updateRate>1</updateRate>
+      <serviceName>mrp1_imu</serviceName>
+      <topicName>mrp1_imu</topicName>
+      <gaussianNoise>0</gaussianNoise>
+      <xyzOffset>0 0 0</xyzOffset>
+      <rpyOffset>0 0 -0.703220730592</rpyOffset>
+    </plugin>     
+  </gazebo>  
 
   <joint name="camera_joint" type="fixed">
     <axis xyz="1 0 0"/> <!-- 0 1 0 -->
@@ -208,33 +219,65 @@
     </joint>
   
     <link name="camera_optical_frame"/>
-    
-    <gazebo reference="camera_link">
-      <sensor type="camera" name="camera_camera_sensor">
-        <update_rate>15</update_rate>
-        <camera>
-          <horizontal_fov angle='1.57079633'/>
-          <image>
-            <format>R8G8B8</format>
-            <width>320</width>
-            <height>240</height>
-          </image>
-          <clip>
-            <near>0.01</near>
-            <far>100</far>
-          </clip>
-        </camera>
 
-        <plugin name="camera_camera_controller" filename="libgazebo_ros_camera.so">
-          <cameraName>camera</cameraName>
-          <alwaysOn>true</alwaysOn>
-          <updateRate>15</updateRate>
-          <imageTopicName>left/image_raw</imageTopicName>
-          <cameraInfoTopicName>left/camera_info</cameraInfoTopicName>
-          <frameName>camera_optical_frame</frameName>
-        </plugin>
-      </sensor>
-    </gazebo>
+
+
+  <gazebo reference="camera_link">
+    <sensor type="multicamera" name="stereo_camera">
+      <update_rate>30.0</update_rate>
+      <camera name="left">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>752</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <camera name="right">
+        <pose>0 -0.07 0 0 0 0</pose>
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>752</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <plugin name="stereo_camera_controller" filename="libgazebo_ros_multicamera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>multisense_sl/camera</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>left_camera_optical_frame</frameName>
+        <!--<rightFrameName>right_camera_optical_frame</rightFrameName>-->
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+
 
 <!-- WHEELS -->
 
@@ -385,6 +428,27 @@
             <mu2>0.2</mu2>
             <material>Gazebo/Grey</material>
           </gazebo>
+          
+          
+<gazebo>
+  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+    <updateRate>100.0</updateRate>
+    <robotNamespace>/</robotNamespace>
+    <leftFrontJoint>fl_wheel_joint</leftFrontJoint>
+    <rightFrontJoint>fr_wheel_joint</rightFrontJoint>
+    <leftRearJoint>bl_wheel_joint</leftRearJoint>
+    <rightRearJoint>br_wheel_joint</rightRearJoint>
+    <wheelSeparation>0.4</wheelSeparation>
+    <wheelDiameter>0.215</wheelDiameter>
+    <robotBaseFrame>base_link</robotBaseFrame>
+    <torque>20</torque>
+    <topicName>cmd_vel</topicName>
+    <commandTopic>cmd_vel</commandTopic>
+    <odometryTopic>odom</odometryTopic>
+    <odometryFrame>odom</odometryFrame>
+    <broadcastTF>false</broadcastTF>
+  </plugin>
+</gazebo>
 
 </robot>
 
