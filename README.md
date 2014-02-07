@@ -176,6 +176,11 @@ Error [Param.hh:154] Unable to convert parameter[broadcastTF] whose type is[stri
 
 Error [SkidSteerDrivePlugin.cc:83] The <MaxForce> element in the skid steer plugin is deprecated.Use <max_force>
 
+## Recommended Mesh Resolution
+
+For collision checking using the ROS motion planning packages, as few faces per link as possible are recommended for the collision meshes that you put into the URDF (ideally less than 1000). If possible, approximating the meshes with other primitives is encouraged. 
+    
+http://wiki.ros.org/urdf/XML/link
 
 # IMU
 
@@ -330,7 +335,9 @@ http://answers.ros.org/question/12430/modelling-sensorsimu-in-gazebo/
 -->
 ~~~
 
-
+http://answers.gazebosim.org/question/3877/contact-sensor-no-data-output/
+http://answers.gazebosim.org/question/5355/adding-ros-integrated-contact-sensors/
+http://answers.ros.org/question/29158/how-do-i-use-force-sensor-bumper-sensor-in-gazebo/
 
 # Laser
 

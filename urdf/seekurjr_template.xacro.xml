@@ -13,27 +13,6 @@
        xmlns:renderable="http://playerstage.sourceforge.net/gazebo/xmlschema/#renderable"
        xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
        xmlns:physics="http://playerstage.sourceforge.net/gazebo/xmlschema/#physics">
+      
 
-  <!-- define global properties -->
-  <property name="M_PI" value="3.1415926535897931" />
-  <property name="deg_to_rad" value="0.01745329251994329577" />
-  
-  
-  
-  <include filename="$(find seekurjr_gazebo)/urdf/base.urdf.xml" />
-  <include filename="$(find seekurjr_gazebo)/urdf/base.gazebo.xml" />
-  
-	<include filename="$(find seekurjr_gazebo)/urdf/lms1xx.urdf.xml" />
-	<include filename="$(find seekurjr_gazebo)/urdf/lms1xx.gazebo.xml" />
-	
-  <include filename="$(find seekurjr_gazebo)/urdf/stereocamera.urdf.xml" />
-  <include filename="$(find seekurjr_gazebo)/urdf/stereocamera.gazebo.xml" /> 
-  
-  <include filename="$(find seekurjr_gazebo)/urdf/imu.urdf.xml" />
-	<include filename="$(find seekurjr_gazebo)/urdf/imu.gazebo.xml" />
-	
-  <include filename="$(find seekurjr_gazebo)/urdf/bumpers.urdf.xml" />
-	<include filename="$(find seekurjr_gazebo)/urdf/bumpers.gazebo.xml" />
-	
 </robot>
-
