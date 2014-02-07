@@ -18,7 +18,11 @@
   <property name="M_PI" value="3.1415926535897931" />
   <property name="deg_to_rad" value="0.01745329251994329577" />
   
+  <property name="wheel_base" value="0.425" />
   
+  <property name="wheel_diameter" value="0.385" />
+  
+  <property name="wheel_separation" value="0.66357" />
   
   <include filename="$(find seekurjr_gazebo)/urdf/base.urdf.xml" />
   <include filename="$(find seekurjr_gazebo)/urdf/base.gazebo.xml" />
@@ -32,8 +36,9 @@
   <include filename="$(find seekurjr_gazebo)/urdf/imu.urdf.xml" />
 	<include filename="$(find seekurjr_gazebo)/urdf/imu.gazebo.xml" />
 	
+	<!--
   <include filename="$(find seekurjr_gazebo)/urdf/bumpers.urdf.xml" />
 	<include filename="$(find seekurjr_gazebo)/urdf/bumpers.gazebo.xml" />
-	
+	-->
 </robot>
 

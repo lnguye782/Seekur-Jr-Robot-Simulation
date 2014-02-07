@@ -51,13 +51,13 @@
 <gazebo>
   <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
     <updateRate>100.0</updateRate>
-    <robotNamespace>/</robotNamespace>
+    <robotNamespace>/seekurjr</robotNamespace>
     <leftFrontJoint>fl_wheel_joint</leftFrontJoint>
     <rightFrontJoint>fr_wheel_joint</rightFrontJoint>
     <leftRearJoint>bl_wheel_joint</leftRearJoint>
     <rightRearJoint>br_wheel_joint</rightRearJoint>
-    <wheelSeparation>0.4</wheelSeparation>
-    <wheelDiameter>0.215</wheelDiameter>
+    <wheelSeparation>${wheel_separation}</wheelSeparation>
+    <wheelDiameter>${wheel_diameter}</wheelDiameter>
     <robotBaseFrame>base_link</robotBaseFrame>
     <torque>20</torque>
     <topicName>cmd_vel</topicName>
