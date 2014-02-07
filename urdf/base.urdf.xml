@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+
+<robot name="seekurjr" 
+       xmlns:xi="http://www.w3.org/2001/XInclude"
+       xmlns:gazebo="http://playerstage.sourceforge.net/gazebo/xmlschema/#gz"
+       xmlns:model="http://playerstage.sourceforge.net/gazebo/xmlschema/#model"
+       xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+       xmlns:body="http://playerstage.sourceforge.net/gazebo/xmlschema/#body"
+       xmlns:geom="http://playerstage.sourceforge.net/gazebo/xmlschema/#geom"
+       xmlns:joint="http://playerstage.sourceforge.net/gazebo/xmlschema/#joint"
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+       xmlns:rendering="http://playerstage.sourceforge.net/gazebo/xmlschema/#rendering"
+       xmlns:renderable="http://playerstage.sourceforge.net/gazebo/xmlschema/#renderable"
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+       xmlns:physics="http://playerstage.sourceforge.net/gazebo/xmlschema/#physics">
+
+<!-- BASE FOOTPRINT -->
+<!-- 
+base_footprint is a fictitious link(frame) that is on the 
+ground right below base_link origin,navigation stack depends on this frame 
+-->
+
+<!-- BASE_LINK (RED) -->
+<link name="base_link">
+
+	<inertial>
+		<mass value="70.0" />
+		<origin xyz="0 0 0" rpy="1.570796 0 1.570796"/>
+		<inertia ixx="0.011083" ixy="-0.000132"  ixz="-0.000303"  iyy="0.011182"  iyz="-0.000597"  izz="0.005307" />
+	</inertial>
+
+	<visual>
+		<origin xyz="0 0 0" rpy="1.570796 0 1.570796" />
+		<geometry>
+			<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_body_new_low2.dae" scale="1 1 1"/>
+		</geometry>
+	</visual>
+
+	<collision>
+		<origin xyz="0 0 0" rpy="1.570796 0 1.570796" />
+		<geometry>
+			<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_body_new_low2.stl" scale="1 1 1"/>
+		</geometry>
+	</collision>     
+
+</link>
+  
+<link name="bl_wheel">
+
+	<inertial>
+		<mass value="1.75" />
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<inertia ixx="0.000195" ixy="0" ixz="0" iyy="0.000327" iyz="0" izz="0.000195" />
+	</inertial>
+    
+	<visual>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<geometry>
+			<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_left_side_wheel_low2.stl" scale="1 1 1"/>
+		</geometry>
+		<material name="WheelBlack">
+			<color rgba="0.117 0.117 0.117 1"/>
+		</material>
+	</visual>
+	
+	<collision>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<geometry>
+			<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_left_side_wheel_low2.stl" scale="1 1 1"/>
+		</geometry>
+	</collision>   
+
+</link>
+
+<link name="fl_wheel">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+				<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_left_side_wheel_low2.stl" scale="1 1 1"/>
+        </geometry>
+        <material name="WheelBlack">
+					<color rgba="0.117 0.117 0.117 1"/>
+        </material>
+      </visual>
+      <collision>
+       <origin xyz="0 0 0" rpy="0 0 0"/>
+       <geometry>
+         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_left_side_wheel_low2.stl" scale="1 1 1"/>
+       </geometry>
+      </collision>
+    <inertial>
+      <mass value="1.75" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.000195" ixy="0" ixz="0" iyy="0.000327" iyz="0" izz="0.000195" />
+    </inertial>
+</link>
+
+<link name="br_wheel">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+				<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_right_side_wheel_low2.stl" scale="1 1 1"/>
+        </geometry>
+        <material name="WheelBlack">
+					<color rgba="0.117 0.117 0.117 1"/>
+        </material>
+      </visual>
+      <collision>
+       <origin xyz="0 0 0" rpy="0 0 0"/>
+       <geometry>
+         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_right_side_wheel_low2.stl" scale="1 1 1"/>
+       </geometry>
+      </collision>
+    <inertial>
+      <mass value="1.75" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.000195" ixy="0" ixz="0" iyy="0.000327" iyz="0" izz="0.000195" />
+    </inertial>
+</link>
+
+<link name="fr_wheel">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+				<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_right_side_wheel_low2.stl" scale="1 1 1"/>
+        </geometry>
+        <material name="WheelBlack">
+					<color rgba="0.117 0.117 0.117 1"/>
+        </material>
+      </visual>
+      <collision>
+       <origin xyz="0 0 0" rpy="0 0 0"/>
+       <geometry>
+         <mesh filename="package://seekurjr_gazebo/meshes/seekurjr_right_side_wheel_low2.stl" scale="1 1 1"/>
+       </geometry>
+      </collision> 
+    <inertial>
+      <mass value="1.75" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.000195" ixy="0" ixz="0" iyy="0.000327" iyz="0" izz="0.000195" />
+    </inertial>
+</link>
+
+<!-- JOINTS -->
+
+<joint name="bl_wheel_joint" type="revolute">
+<origin xyz="-0.215 0.32 0.083" rpy="0 0 0"/>
+<parent link="base_link"/>
+<child link="bl_wheel"/>
+<axis xyz="0 1 0"/>>
+<limit effort="30" velocity="1.0"  lower="-100" upper="100" />
+</joint>
+
+<joint name="fl_wheel_joint" type="revolute">
+<origin xyz="0.215 0.32 0.083" rpy="0 0 0"/>
+<parent link="base_link"/>
+<child link="fl_wheel"/>
+<axis xyz="0 1 0"/>>
+<limit effort="30" velocity="1.0"  lower="-100" upper="100" />
+</joint>
+
+<joint name="br_wheel_joint" type="revolute">
+<origin xyz="-0.215 -0.32 0.083" rpy="0 0 0"/>
+<parent link="base_link"/>
+<child link="br_wheel"/>
+<axis xyz="0 1 0"/>>
+<limit effort="30" velocity="1.0"  lower="-100" upper="100" />
+</joint>
+
+<joint name="fr_wheel_joint" type="revolute">
+<origin xyz="0.215 -0.32 0.083" rpy="0 0 0"/>
+<parent link="base_link"/>
+<child link="fr_wheel"/>
+<axis xyz="0 1 0"/>>
+<limit effort="30" velocity="1.0"  lower="-100" upper="100" />
+</joint>
+
+
+</robot>

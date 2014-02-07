@@ -181,6 +181,8 @@
     </plugin>     
   </gazebo>  
 
+
+
   <joint name="camera_joint" type="fixed">
     <axis xyz="1 0 0"/> <!-- 0 1 0 -->
     <origin xyz="0.42 0 0.41" rpy="0 0 0"/>
@@ -278,7 +280,7 @@
     </sensor>
   </gazebo>
 
-
+      
 <!-- WHEELS -->
 
 <link name="bl_wheel">
@@ -447,6 +449,7 @@
     <odometryTopic>odom</odometryTopic>
     <odometryFrame>odom</odometryFrame>
     <broadcastTF>false</broadcastTF>
+    <max_force>5.0</max_force>
   </plugin>
 </gazebo>
 
