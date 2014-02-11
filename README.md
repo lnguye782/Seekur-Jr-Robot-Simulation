@@ -6,7 +6,6 @@ sudo apt-get install ros-groovy-control-msgs
 ~~~
 
 
-
 ~~~{.bash}
 source ~/rosws/setup.bash
 source devel/setup.bash
@@ -35,27 +34,26 @@ rosrun image_view stereo_view stereo:=/mobileranger image:=image_rect_color
 rosrun rqt_gui rqt_gui 
 ~~~
 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=Nogzb74IlV0
+" target="_blank"><img src="http://img.youtube.com/vi/Nogzb74IlV0/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 # Inertia
+
+Main SeekurJr mechanical specification:
+
+- DIMENSIONS: 1050mm x 840mm x 500mm LxWxH
+- WEIGHT: 77kg (1 battery)
+- GROUND CLEARANCE: 105mm
+- TIRES: 400mm
+- WHEELBASE: 425mm 
+
 
 According to 
 [Wikipedia](http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors),
 list of moment of inertia tensors:
 
-~~~{.octave}
-		m=14; h=0.19; w=0.4; d=0.5; 
-		ixx = 1/12*m*(h^2+d^2)
-		iyy = 1/12*m*(w^2+d^2) 
-		izz = 1/12*m*(h^2+d^2) 
-~~~
-
-ROBOT
-
-DIMENSIONS: 1050mm x 840mm x 500mm LxWxH
-WEIGHT: 77kg (1 battery)
-GROUND CLEARANCE: 105mm
-TIRES: 400mm
-WHEELBASE: 425mm 
+One can calculate approximate inertai tensor for SeekurJr in Ocatve:
 
 ~~~{.octave}
 m=77; h=0.5; w=0.84; d=1.05; 
@@ -63,6 +61,7 @@ ixx = 1/12*m*(h^2+d^2)
 iyy = 1/12*m*(w^2+d^2) 
 izz = 1/12*m*(h^2+d^2) 
 ~~~
+
 
 ~~~
 <inertia  ixx="8.6785" ixy="0"  ixz="0"  iyy="11.602"  iyz="0"  izz="8.6785" />
