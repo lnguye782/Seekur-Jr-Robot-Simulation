@@ -44,7 +44,7 @@ rosrun rqt_gui rqt_gui
 
 Sample session can be seen by following video link below.
 
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/Nogzb74IlV0/0.jpg)](http://www.youtube.com/watch?v=Nogzb74IlV0)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/Nogzb74IlV0/0.jpg)](https://www.youtube.com/watch?v=Nogzb74IlV0)
 
 
 # Inertia
@@ -56,6 +56,14 @@ Main SeekurJr mechanical specification:
 - GROUND CLEARANCE: 105mm
 - TIRES: 400mm
 - WHEELBASE: 425mm 
+
+Specification | Value
+--- | ---:
+DIMENSIONS (LxWxH) | 1050mm x 840mm x 500mm
+WEIGHT      | 77kg (1 battery)
+GROUND CLEARANCE | 105mm
+TIRES | 400mm
+WHEELBASE | 425mm
 
 
 According to 
@@ -115,11 +123,7 @@ http://answers.gazebosim.org/question/4372/the-inertia-matrix-explained/
 
 
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+
 
 
 # Wheels and Steering
