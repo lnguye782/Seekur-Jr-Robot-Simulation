@@ -144,14 +144,14 @@ and `seekurjr_gazebo/urdf/base.gazebo.xml`.
 
 For collision checking using the ROS motion planning packages, as few faces per link as possible are recommended for the collision meshes that you put into the URDF (ideally less than 1000). If possible, approximating the meshes with other primitives is encouraged. 
     
-[Link](http://wiki.ros.org/urdf/XML/link)
+[ROS Wiki](http://wiki.ros.org/urdf/XML/link)
 
 # IMU
 
 Similary to other sensors, for IMU simulation we need to define corresponding 
 **link**, **joint**, and **gazebo** parameters.
 
-[Link](http://answers.ros.org/question/12430/modelling-sensorsimu-in-gazebo/)
+[ROS Answers](http://answers.ros.org/question/12430/modelling-sensorsimu-in-gazebo/)
 
 
 Example for SeekurJr robot can be found in `seekurjr_gazebo/urdf/imu.urdf.xml`
@@ -176,9 +176,11 @@ Similary to other sensors, bumper requires to define corresponding
 -->
 ~~~
 
+~~~
 http://answers.gazebosim.org/question/3877/contact-sensor-no-data-output/
 http://answers.gazebosim.org/question/5355/adding-ros-integrated-contact-sensors/
 http://answers.ros.org/question/29158/how-do-i-use-force-sensor-bumper-sensor-in-gazebo/
+~~~
 
 Example for SeekurJr robot can be found in `seekurjr_gazebo/urdf/bumpers.urdf.xml`
 and `seekurjr_gazebo/urdf/bumpers.gazebo.xml`.
@@ -204,7 +206,4 @@ Example for SeekurJr robot can be found in `seekurjr_gazebo/urdf/stereocamera.ur
 and `seekurjr_gazebo/urdf/stereocamera.gazebo.xml`.
 
 [Link](http://answers.ros.org/question/61712/how-to-use-libgazebo_ros_cameraso-in-gazebo-urdf/)
-
-  
-
 
