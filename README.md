@@ -1,4 +1,4 @@
-# seekurjr model sim
+# Seekur Jr. URDF/CAD robot model simulation
 
 To satisfy requirements for Gazebo>=1.9 in ROS Groovy:
 
@@ -49,13 +49,7 @@ Sample session can be seen by following video link below.
 
 # Inertia
 
-Main SeekurJr mechanical specification:
-
-- DIMENSIONS: 1050mm x 840mm x 500mm LxWxH
-- WEIGHT: 77kg (1 battery)
-- GROUND CLEARANCE: 105mm
-- TIRES: 400mm
-- WHEELBASE: 425mm 
+Table 1. Main SeekurJr mechanical specification
 
 Specification | Value
 --- | ---:
@@ -79,10 +73,17 @@ iyy = 1/12*m*(w^2+d^2)
 izz = 1/12*m*(h^2+d^2) 
 ~~~
 
-
+Results are used in `<inertia />` URDF-tag parameters:
 ~~~
 <inertia  ixx="8.6785" ixy="0"  ixz="0"  iyy="11.602"  iyz="0"  izz="8.6785" />
 ~~~
+
+Another possible way to calculate inertia tensor for complicated objects is to use
+dedicated software. For example one can load solid mechanical model in **Meshlab**
+and calculate inertia in two steps:
+
+- View > Show Layer Dialog
+- Filter > Quality Measure and computations > Compute Geometric measures
 
 ~~~
 Opened mesh /home/kp/rosws/catkin/src/seekurjr_gazebo/meshes/seekurjr_body_new_low.stl in 15 msec
