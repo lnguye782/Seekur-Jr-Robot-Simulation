@@ -74,6 +74,7 @@ izz = 1/12*m*(h^2+d^2)
 ~~~
 
 Results are used in `<inertia />` URDF-tag parameters:
+
 ~~~
 <inertia  ixx="8.6785" ixy="0"  ixz="0"  iyy="11.602"  iyz="0"  izz="8.6785" />
 ~~~
@@ -107,25 +108,21 @@ axis momenta are :
 Applied filter Compute Geometric Measures in 12 msec
 ~~~
 
+Resulting `<inertia />` tag wolud be:
+
 ~~~
 <inertia  ixx="0.011083" ixy="-0.000132"  ixz="-0.000303"  iyy="0.011182"  iyz="-0.000597"  izz="0.005307" />
-      
-<inertia  ixx="7.8864" ixy="0"  ixz="0"  iyy="10.5430"  iyz="5.5721"  izz="5.5721" />
 ~~~
 
+Useful links:
 
+~~~
 http://answers.ros.org/question/30539/choosing-the-right-coefficients-for-gazebo-simulation/
-
 http://wiki.ros.org/urdf/Tutorials/Adding%20Physical%20and%20Collision%20Properties%20to%20a%20URDF%20Model
-
-
 http://answers.gazebosim.org/question/4372/the-inertia-matrix-explained/
+~~~
 
-
-
-
-
-
+Example for SeekurJr robot can be found in `seekurjr_gazebo/urdf/base.urdf.xml`.
 
 # Wheels and Steering
 
@@ -133,53 +130,12 @@ As for mu, mu2, slip1, slip2 they are explained here, notice that the values are
 http://answers.gazebosim.org/question/1505/how-do-i-set-up-mu-and-slip-for-a-skid-steer-robot/
 http://www.ode.org/ode-latest-userguide.html
 
-~~~
+For skid-steering model simulation `<plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">` is used.
 
-<gazebo>
-  <plugin name="SkidSteerDrivePlugin" filename="libSkidSteerDrivePlugin.so">
-      <right_front>fr_wheel_joint</right_front>
-      <right_rear>br_wheel_joint</right_rear>
-      <left_front>fl_wheel_joint</left_front>
-      <left_rear>bl_wheel_joint</left_rear>
-      <max_force>5.0</max_force>
-  </plugin>
-</gazebo>
+Example for SeekurJr robot can be found in `seekurjr_gazebo/urdf/base.urdf.xml`
+and `seekurjr_gazebo/urdf/base.gazebo.xml`.
 
 
-<!--
-<gazebo>
-  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
-    <updateRate>100.0</updateRate>
-    <robotNamespace>/</robotNamespace>
-    <leftFrontJoint>front_left_wheel_joint</leftFrontJoint>
-    <rightFrontJoint>front_right_wheel_joint</rightFrontJoint>
-    <leftRearJoint>back_left_wheel_joint</leftRearJoint>
-    <rightRearJoint>back_right_wheel_joint</rightRearJoint>
-    <wheelSeparation>0.4</wheelSeparation>
-    <wheelDiameter>0.215</wheelDiameter>
-    <robotBaseFrame>base_link</robotBaseFrame>
-    <torque>20</torque>
-    <topicName>cmd_vel</topicName>
-    <broadcastTF>false</broadcastTF>
-  </plugin>
-</gazebo>
-<gazebo>
-  <plugin name="SkidSteerDrivePlugin" filename="libSkidSteerDrivePlugin.so">
-      <right_front>p3at_front_right_wheel_joint</right_front>
-      <right_rear>p3at_back_right_wheel_joint</right_rear>
-      <left_front>p3at_front_left_wheel_joint</left_front>
-      <left_rear>p3at_back_left_wheel_joint</left_rear>
-      <max_force>5.0</max_force>
-  </plugin>
-</gazebo>
--->
-
-~~~
-
-Error [Param.hh:154] Unable to convert parameter[broadcastTF] whose type is[string], to type[b]
-[ INFO] [1391688992.946315557]: Starting GazeboRosSkidSteerDrive Plugin (ns = //)!
-
-Error [SkidSteerDrivePlugin.cc:83] The <MaxForce> element in the skid steer plugin is deprecated.Use <max_force>
 
 ## Recommended Mesh Resolution
 
