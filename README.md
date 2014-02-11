@@ -127,8 +127,11 @@ Example for SeekurJr robot can be found in `seekurjr_gazebo/urdf/base.urdf.xml`.
 # Wheels and Steering
 
 As for mu, mu2, slip1, slip2 they are explained here, notice that the values are between [0..1]. For more information check out this ODE page and just search for mu, mu2, slip1, slip2 it will be more deeply explained.
+
+~~~
 http://answers.gazebosim.org/question/1505/how-do-i-set-up-mu-and-slip-for-a-skid-steer-robot/
 http://www.ode.org/ode-latest-userguide.html
+~~~
 
 For skid-steering model simulation `<plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">` is used.
 
@@ -141,144 +144,18 @@ and `seekurjr_gazebo/urdf/base.gazebo.xml`.
 
 For collision checking using the ROS motion planning packages, as few faces per link as possible are recommended for the collision meshes that you put into the URDF (ideally less than 1000). If possible, approximating the meshes with other primitives is encouraged. 
     
-http://wiki.ros.org/urdf/XML/link
+[](http://wiki.ros.org/urdf/XML/link)
 
 # IMU
 
-~~~
-<joint name="imu_joint" type="fixed">
-    <axis xyz="1 0 0"/> <!-- 0 1 0 -->
-    <origin xyz="0 0 0.19"/>
-    <parent link="base_link"/>
-    <child link="imu_link"/>
-  </joint>
+Similary to other sensors, for IMU simulation we ned to define corresponding 
+**link**, **joint**, and **gazebo** parameters.
+
+[](http://answers.ros.org/question/12430/modelling-sensorsimu-in-gazebo/)
 
 
-<link name="imu_link">
-  <inertial>
-    <mass value="0.001"/>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0001"/>
-  </inertial>
-  <visual>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <geometry>
-      <box size="0.1 0.1 0.1"/>
-    </geometry>
-  </visual>
-  <collision>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <geometry>
-      <box size=".001 .001 .001"/>
-    </geometry>
-  </collision>
-</link>
-
-
-<gazebo>
-  <controller:gazebo_ros_imu name="imu_controller" plugin="libgazebo_ros_imu.so">
-    <alwaysOn>true</alwaysOn>
-    <updateRate>50.0</updateRate> 
-    <bodyName>imu_link</bodyName>
-    <topicName>imu_data</topicName>
-    <gaussianNoise>2.89e-08</gaussianNoise>
-    <xyzOffsets>0 0 0</xyzOffsets>
-    <rpyOffsets>0 0 0</rpyOffsets>
-    <interface:position name="imu_position"/>
-  </controller:gazebo_ros_imu>
-</gazebo>
-
-~~~
-
-
-
-~~~
-  <gazebo reference="imu_link">
-    <!-- this is expected to be reparented to pelvis with appropriate offset
-         when imu_link is reduced by fixed joint reduction -->
-    <!-- todo: this is working with gazebo 1.4, need to write a unit test -->
-<!--     <sensor name="imu_sensor" type="imu">
-      <always_on>1</always_on>
-      <update_rate>1000.0</update_rate>     
-    </sensor>      -->
-  </gazebo>
-
-<!-- IMU -->
-
-<link name="imu_link">
-  <inertial>
-    <mass value="0.001"/>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0001"/>
-  </inertial>
-  <visual>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <geometry>
-      <box size="0.1 0.1 0.1"/>
-    </geometry>
-  </visual>
-  <collision>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <geometry>
-      <box size=".001 .001 .001"/>
-    </geometry>
-  </collision>
-</link>
-
-<joint name="imu_joint" type="fixed">
-	<axis xyz="1 0 0"/> <!-- 0 1 0 -->
-	<origin xyz="0 0 0.19"/>
-	<parent link="base_link"/>
-	<child link="imu_link"/>
-</joint>
-
-
-<gazebo>
-  <controller:gazebo_ros_imu name="imu_controller" plugin="libgazebo_ros_imu.so">
-    <alwaysOn>true</alwaysOn>
-    <updateRate>50.0</updateRate> 
-    <bodyName>imu_link</bodyName>
-    <topicName>imu_data</topicName>
-    <gaussianNoise>2.89e-08</gaussianNoise>
-    <xyzOffsets>0 0 0</xyzOffsets>
-    <rpyOffsets>0 0 0</rpyOffsets>
-    <interface:position name="imu_position"/>
-  </controller:gazebo_ros_imu>
-</gazebo>
-
-<!--
-  <gazebo reference="imu_link">
-    
-    
-    <sensor name="imu_sensor" type="imu">
-      <always_on>1</always_on>
-      <update_rate>1000.0</update_rate>
-      <imu>
-        <noise>
-          <type>gaussian</type>
-          
-          <rate>
-            <mean>0.0</mean>
-            <stddev>2e-4</stddev>
-            <bias_mean>0.0000075</bias_mean>
-            <bias_stddev>0.0000008</bias_stddev>
-          </rate>
-          <accel>
-            <mean>0.0</mean>
-            <stddev>1.7e-2</stddev>
-            <bias_mean>0.1</bias_mean>
-            <bias_stddev>0.001</bias_stddev>
-          </accel>
-        </noise>
-      </imu>
-    </sensor>
-  </gazebo>
--->
-
-<!--
-http://answers.ros.org/question/12430/modelling-sensorsimu-in-gazebo/
--->
-~~~
+Example for SeekurJr robot can be found in `seekurjr_gazebo/urdf/imu.urdf.xml`
+and `seekurjr_gazebo/urdf/imu.gazebo.xml`.
 
 # Bumper
 
