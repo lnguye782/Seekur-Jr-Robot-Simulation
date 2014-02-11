@@ -355,13 +355,11 @@ http://answers.ros.org/question/29158/how-do-i-use-force-sensor-bumper-sensor-in
 
 # Camera
 
+
+http://answers.ros.org/question/61712/how-to-use-libgazebo_ros_cameraso-in-gazebo-urdf/
+
+~~~
 <!-- STEREOCAM -->
-
-<!--
-http://answers.ros.org/question/61712/how-to-use-libgazebo_ros_cameraso-in-gazebo-urdf/
--->
-http://answers.ros.org/question/61712/how-to-use-libgazebo_ros_cameraso-in-gazebo-urdf/
-
 <gazebo reference="wide_stereo_gazebo_l_stereo_camera_frame">
   <sensor:camera name="wide_stereo_gazebo_l_stereo_camera_sensor">
     <imageSize>640 480</imageSize>
