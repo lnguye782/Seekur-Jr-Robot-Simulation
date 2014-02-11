@@ -34,10 +34,7 @@ rosrun image_view stereo_view stereo:=/mobileranger image:=image_rect_color
 rosrun rqt_gui rqt_gui 
 ~~~
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=Nogzb74IlV0
-" target="_blank"><img src="http://img.youtube.com/vi/Nogzb74IlV0/0.jpg" 
-alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
-
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/Nogzb74IlV0/0.jpg)](http://www.youtube.com/watch?v=Nogzb74IlV0)
 # Inertia
 
 Main SeekurJr mechanical specification:
