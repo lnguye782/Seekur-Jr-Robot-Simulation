@@ -144,20 +144,23 @@ and `seekurjr_gazebo/urdf/base.gazebo.xml`.
 
 For collision checking using the ROS motion planning packages, as few faces per link as possible are recommended for the collision meshes that you put into the URDF (ideally less than 1000). If possible, approximating the meshes with other primitives is encouraged. 
     
-[](http://wiki.ros.org/urdf/XML/link)
+[Link](http://wiki.ros.org/urdf/XML/link)
 
 # IMU
 
-Similary to other sensors, for IMU simulation we ned to define corresponding 
+Similary to other sensors, for IMU simulation we need to define corresponding 
 **link**, **joint**, and **gazebo** parameters.
 
-[](http://answers.ros.org/question/12430/modelling-sensorsimu-in-gazebo/)
+[Link](http://answers.ros.org/question/12430/modelling-sensorsimu-in-gazebo/)
 
 
 Example for SeekurJr robot can be found in `seekurjr_gazebo/urdf/imu.urdf.xml`
 and `seekurjr_gazebo/urdf/imu.gazebo.xml`.
 
-# Bumper
+# Bumpers
+
+Similary to other sensors, bumper requires to define corresponding 
+**link**, **joint**, and **gazebo** parameters.
 
 ~~~
 <!-- BAMPER -->
@@ -177,158 +180,31 @@ http://answers.gazebosim.org/question/3877/contact-sensor-no-data-output/
 http://answers.gazebosim.org/question/5355/adding-ros-integrated-contact-sensors/
 http://answers.ros.org/question/29158/how-do-i-use-force-sensor-bumper-sensor-in-gazebo/
 
+Example for SeekurJr robot can be found in `seekurjr_gazebo/urdf/bumpers.urdf.xml`
+and `seekurjr_gazebo/urdf/bumpers.gazebo.xml`.
+
 # Laser
 
-~~~
-<!--
-    http://gazebosim.org/wiki/Tutorials/1.9/ROS_Motor_and_Sensor_Plugins
--->
-<!--
-<sensor type="ray" name="head_hokuyo_sensor">
-<plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
--->
-~~~
+Similary to other sensors, laser rangefinder requires to define corresponding 
+**link**, **joint**, and **gazebo** parameters.
 
+General examples can be found on Gazebo 
+[wiki](http://gazebosim.org/wiki/Tutorials/1.9/ROS_Motor_and_Sensor_Plugins).
+
+Example for SeekurJr robot can be found in `seekurjr_gazebo/urdf/lms1xx.urdf.xml`
+and `seekurjr_gazebo/urdf/lms1xx.gazebo.xml`.
 
 
 # Camera
 
+Similary to other sensors, laser rangefinder requires to define corresponding 
+**link**, **joint**, and **gazebo** parameters.
 
-http://answers.ros.org/question/61712/how-to-use-libgazebo_ros_cameraso-in-gazebo-urdf/
+Example for SeekurJr robot can be found in `seekurjr_gazebo/urdf/stereocamera.urdf.xml`
+and `seekurjr_gazebo/urdf/stereocamera.gazebo.xml`.
 
-~~~
-<!-- STEREOCAM -->
-<gazebo reference="wide_stereo_gazebo_l_stereo_camera_frame">
-  <sensor:camera name="wide_stereo_gazebo_l_stereo_camera_sensor">
-    <imageSize>640 480</imageSize>
-    <imageFormat>BAYER_BGGR8</imageFormat>
-    <hfov>90</hfov>
-    <nearClip>0.1</nearClip>
-    <farClip>100</farClip>
-    <updateRate>25.0</updateRate>
-    <controller:gazebo_ros_camera name="wide_stereo_gazebo_l_stereo_camera_controller" plugin="libgazebo_ros_camera.so">
-      <alwaysOn>true</alwaysOn>
-      <updateRate>25.0</updateRate>
-      <imageTopicName>wide_stereo/left/image_raw</imageTopicName>
-      <cameraInfoTopicName>wide_stereo/left/camera_info</cameraInfoTopicName>
-      <frameName>wide_stereo_optical_frame</frameName>
-      <hackBaseline>0</hackBaseline>
-      <CxPrime>320.5</CxPrime>
-      <Cx>320.5</Cx>
-      <Cy>240.5</Cy>
-      <!-- image_width / (2*tan(hfov_radian /2)) -->
-      <!-- 320 for wide and 772.55 for narrow stereo camera -->
-      <focal_length>320</focal_length>
-      <distortion_k1>0.00000001</distortion_k1>
-      <distortion_k2>0.00000001</distortion_k2>
-      <distortion_k3>0.00000001</distortion_k3>
-      <distortion_t1>0.00000001</distortion_t1>
-      <distortion_t2>0.00000001</distortion_t2>
-      <interface:camera name="wide_stereo_gazebo_l_stereo_camera_iface"/>
-    </controller:gazebo_ros_camera>
-  </sensor:camera>
-  <turnGravityOff>true</turnGravityOff>
-  <material>PR2/Blue</material>
-</gazebo>
+[Link](http://answers.ros.org/question/61712/how-to-use-libgazebo_ros_cameraso-in-gazebo-urdf/)
 
-
-  <joint name="camera_joint" type="fixed">
-    <axis xyz="1 0 0"/> <!-- 0 1 0 -->
-    <origin xyz="0 0 0.2"/>
-    <parent link="base_link"/>
-    <child link="camera_link"/>
-  </joint>
-
-    <link name="camera_link">
-      <inertial>
-        <mass value="0.001" />
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001" />
-      </inertial>
-      <visual>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <box size="0.01 0.01 0.01" />
-        </geometry>
-        <material name="Blue">
-          <color rgba="0.0 0.0 0.8 1"/>
-        </material>
-      </visual>
-      <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <box size="0.01 0.01 0.01" />
-        </geometry>
-      </collision>
-    </link>
-
-    
-    <joint name="camera_optical_joint" type="fixed">
-      <origin xyz="0 0 0" rpy="-1.570796 0.0 -1.570796" />
-      <parent link="camera_link" />
-      <child link="camera_optical_frame"/>
-    </joint>
-  
-    <link name="camera_optical_frame"/>
-    
-    <gazebo reference="camera_link">
-      <sensor type="camera" name="camera_camera_sensor">
-        <update_rate>15</update_rate>
-        <camera>
-          <horizontal_fov>90</horizontal_fov>
-          <image>
-            <format>BAYER_BGGR8</format>
-            <width>320</width>
-            <height>240</height>
-          </image>
-          <clip>
-            <near>0.01</near>
-            <far>100</far>
-          </clip>
-        </camera>
-
-        <plugin name="camera_camera_controller" filename="libgazebo_ros_camera.so">
-          <cameraName>camera</cameraName>
-          <alwaysOn>true</alwaysOn>
-          <updateRate>15</updateRate>
-          <imageTopicName>left/image_raw</imageTopicName>
-          <cameraInfoTopicName>left/camera_info</cameraInfoTopicName>
-          <frameName>camera_optical_frame</frameName>
-        </plugin>
-      </sensor>
-    </gazebo>
-~~~
- 
-    
-~~~ 
-    <gazebo reference="camera_link">
-      <sensor type="camera" name="camera_camera_sensor">
-        <update_rate>15</update_rate>
-        <camera>
-          <horizontal_fov angle='1.57079633'/>
-          <image>
-            <format>R8G8B8</format>
-            <width>320</width>
-            <height>240</height>
-          </image>
-          <clip>
-            <near>0.01</near>
-            <far>100</far>
-          </clip>
-        </camera>
-
-        <plugin name="camera_camera_controller" filename="libgazebo_ros_camera.so">
-          <cameraName>camera</cameraName>
-          <alwaysOn>true</alwaysOn>
-          <updateRate>15</updateRate>
-          <imageTopicName>left/image_raw</imageTopicName>
-          <cameraInfoTopicName>left/camera_info</cameraInfoTopicName>
-          <frameName>camera_optical_frame</frameName>
-        </plugin>
-      </sensor>
-    </gazebo>
-    
-~~~
   
 
 
