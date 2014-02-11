@@ -1,10 +1,13 @@
 # seekurjr model sim
 
+To satisfy requirements for Gazebo>=1.9 in ROS Groovy:
+
 ~~~{.bash}
 sudo apt-get install ros-groovy-pcl-conversions
 sudo apt-get install ros-groovy-control-msgs
 ~~~
 
+Every session should be started as:
 
 ~~~{.bash}
 source ~/rosws/setup.bash
@@ -13,11 +16,15 @@ localmaster
 
 ~~~
 
+Simulator start:
+
 ~~~{.bash}
 roscore
 
 rosrun gazebo_ros gazebo
 ~~~
+
+Spawn robot model:
 
 ~~~{.bash}
 rosrun gazebo_ros spawn_model -file seekurjr.urdf -urdf -z 1 -model seekurjr
@@ -27,6 +34,7 @@ rosrun gazebo_ros spawn_model -file src/seekurjr_gazebo/urdf/seekurjr.urdf -urdf
 roslaunch seekurjr_gazebo display.xml model:=src/seekurjr_gazebo/urdf/seekurjr.urdf
 ~~~
 
+Execute ROS stereoprocessing core and rqt gui control application:
 
 ~~~
 ROS_NAMESPACE=mobileranger rosrun stereo_image_proc stereo_image_proc
@@ -34,7 +42,11 @@ rosrun image_view stereo_view stereo:=/mobileranger image:=image_rect_color
 rosrun rqt_gui rqt_gui 
 ~~~
 
+Sample session can be seen by following video link below.
+
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/Nogzb74IlV0/0.jpg)](http://www.youtube.com/watch?v=Nogzb74IlV0)
+
+
 # Inertia
 
 Main SeekurJr mechanical specification:
@@ -92,7 +104,6 @@ Applied filter Compute Geometric Measures in 12 msec
 <inertia  ixx="7.8864" ixy="0"  ixz="0"  iyy="10.5430"  iyz="5.5721"  izz="5.5721" />
 ~~~
 
-~~~
 
 http://answers.ros.org/question/30539/choosing-the-right-coefficients-for-gazebo-simulation/
 
@@ -101,23 +112,15 @@ http://wiki.ros.org/urdf/Tutorials/Adding%20Physical%20and%20Collision%20Propert
 
 http://answers.gazebosim.org/question/4372/the-inertia-matrix-explained/
 
-Meshlab: seekurjr_body_new_low.stl
-Mesh Volume is 155760256.000000
-Mesh Surface is 4038439.750000
-Thin shell barycenter 8.409724 247.537674 -3.138560
-Center of Mass is 6.480556 131.015488 -45.919720
-Inertia Tensor is :
-| 11264990380032.000000 -130955894784.000000 -315909963776.000000 |
-| -130955894784.000000 11355918696448.000000 -769257701376.000000 |
-| -315909963776.000000 -769257701376.000000 5312563118080.000000 |
-Principal axes are :
-| 0.916011 -0.397463 0.054284 |
-| 0.388693 0.912860 0.124917 |
-| -0.099203 -0.093326 0.990681 |
-axis momenta are :
-| 11243634032640.000000 11491582410752.000000 5198255751168.000000 |
 
-~~~
+
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
 
 # Wheels and Steering
 
