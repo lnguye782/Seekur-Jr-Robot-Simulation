@@ -29,10 +29,11 @@ roslaunch seekurjr_gazebo display.xml model:=src/seekurjr_gazebo/urdf/seekurjr.u
 ~~~
 
 
-ROS_NAMESPACE=multisense_sl/camera rosrun stereo_image_proc stereo_image_proc
-rosrun image_view stereo_view stereo:=/multisense_sl/camera image:=image_rect_color
+~~~
+ROS_NAMESPACE=mobileranger rosrun stereo_image_proc stereo_image_proc
+rosrun image_view stereo_view stereo:=/mobileranger image:=image_rect_color
 rosrun rqt_gui rqt_gui 
-
+~~~
 
 
 # Inertia
