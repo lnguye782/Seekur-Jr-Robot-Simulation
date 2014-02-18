@@ -8,8 +8,9 @@ Panels:
         - /Status1
         - /RobotModel1/Links1
         - /RobotModel1/Links1/base_link1
-        - /TF1
         - /TF1/Frames1
+        - /Imu1/Box properties1
+        - /Imu1/Axes properties1
       Splitter Ratio: 0.5
     Tree Height: 601
   - Class: rviz/Selection
@@ -30,7 +31,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: LaserScan
 Visualization Manager:
   Class: ""
   Displays:
@@ -116,53 +117,104 @@ Visualization Manager:
       Enabled: true
       Frame Timeout: 15
       Frames:
-        /base_link:
-          Value: true
-        /bl_wheel:
-          Value: true
-        /br_wheel:
-          Value: true
-        /camera_link:
-          Value: true
-        /camera_optical_frame:
-          Value: true
-        /fl_wheel:
-          Value: true
-        /fr_wheel:
-          Value: true
-        /imu_link:
-          Value: true
-        /lms1xx_link:
-          Value: true
         All Enabled: true
+        base_link:
+          Value: true
+        bl_wheel:
+          Value: true
+        br_wheel:
+          Value: true
+        camera_link:
+          Value: true
+        camera_optical_frame:
+          Value: true
+        fl_wheel:
+          Value: true
+        fr_wheel:
+          Value: true
+        imu_link:
+          Value: true
+        lms1xx_link:
+          Value: true
       Marker Scale: 1
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        /base_link:
-          /bl_wheel:
+        base_link:
+          bl_wheel:
             {}
-          /br_wheel:
+          br_wheel:
             {}
-          /camera_link:
-            /camera_optical_frame:
+          camera_link:
+            camera_optical_frame:
               {}
-          /fl_wheel:
+          fl_wheel:
             {}
-          /fr_wheel:
+          fr_wheel:
             {}
-          /imu_link:
+          imu_link:
             {}
-          /lms1xx_link:
+          lms1xx_link:
             {}
       Update Interval: 0
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/LaserScan
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 9.33895e-37
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: LaserScan
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.01
+      Style: Flat Squares
+      Topic: /seekurjr/lms1xx/scan
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Acceleration properties:
+        Acc. vector alpha: 1
+        Acc. vector color: 255; 0; 0
+        Acc. vector scale: 1
+        Derotate acceleration: true
+        Enable acceleration: false
+      Axes properties:
+        Axes scale: 1
+        Enable axes: true
+      Box properties:
+        Box alpha: 0.5
+        Box color: 85; 255; 255
+        Enable box: true
+        x_scale: 0.1
+        y_scale: 0.1
+        z_scale: 0.1
+      Class: rviz_imu_plugin/Imu
+      Enabled: true
+      Name: Imu
+      Topic: /mrp1_imu
       Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: /base_link
+    Fixed Frame: base_link
+    Frame Rate: 30
   Name: root
   Tools:
     - Class: rviz/Interact
@@ -182,17 +234,17 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 1.89791
+      Distance: 2.00913
       Focal Point:
-        X: 0.282755
-        Y: -0.328791
-        Z: 0.150462
+        X: 0.129688
+        Y: -0.038621
+        Z: 0.0712444
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.525398
+      Pitch: 1.0604
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 5.87358
+      Yaw: 4.56043
     Saved: ~
 Window Geometry:
   Displays:
@@ -210,5 +262,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1216
-  X: 42
-  Y: 60
+  X: 312
+  Y: 173

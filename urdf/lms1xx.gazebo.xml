@@ -1,21 +1,9 @@
 <?xml version="1.0"?>
 
-<robot name="seekurjr" 
-       xmlns:xi="http://www.w3.org/2001/XInclude"
-       xmlns:gazebo="http://playerstage.sourceforge.net/gazebo/xmlschema/#gz"
-       xmlns:model="http://playerstage.sourceforge.net/gazebo/xmlschema/#model"
-       xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
-       xmlns:body="http://playerstage.sourceforge.net/gazebo/xmlschema/#body"
-       xmlns:geom="http://playerstage.sourceforge.net/gazebo/xmlschema/#geom"
-       xmlns:joint="http://playerstage.sourceforge.net/gazebo/xmlschema/#joint"
-       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
-       xmlns:rendering="http://playerstage.sourceforge.net/gazebo/xmlschema/#rendering"
-       xmlns:renderable="http://playerstage.sourceforge.net/gazebo/xmlschema/#renderable"
-       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
-       xmlns:physics="http://playerstage.sourceforge.net/gazebo/xmlschema/#physics">
+<robot name="seekurjr" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
 
   <gazebo reference="lms1xx_link">
-    <sensor type="ray" name="laser">
+    <sensor type="ray" name="lms1xx">
       <pose>0 0 0 0 0 0</pose>
       <visualize>true</visualize>
       <update_rate>40</update_rate>
@@ -24,8 +12,8 @@
           <horizontal>
             <samples>720</samples>
             <resolution>1</resolution>
-            <min_angle>-2.26889</min_angle>
-            <max_angle>2.2689</max_angle>
+            <min_angle>-1.570796</min_angle>
+            <max_angle>1.570796</max_angle>
           </horizontal>
         </scan>
         <range>
@@ -34,15 +22,20 @@
           <resolution>0.01</resolution>
         </range>
         <noise>
-          <type>gaussian</type>-->
+          <type>gaussian</type>
           <!-- Noise parameters based on published spec for Hokuyo laser
-               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
-               stddev of 0.01m will put 99.7% of samples within 0.03m of the true reading. -->
+               achieving "+-30mm" accuracy at range < 10m. A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
           <mean>0.0</mean>
           <stddev>0.01</stddev>
         </noise>
       </ray>
-      </sensor>
+      <plugin name="gazebo_ros_lms1xx_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/seekurjr/lms1xx/scan</topicName>
+        <frameName>lms1xx_link</frameName>
+      </plugin>
+    </sensor>
   </gazebo>
   
 </robot>

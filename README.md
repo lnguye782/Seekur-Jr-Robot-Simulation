@@ -37,8 +37,8 @@ roslaunch seekurjr_gazebo display.xml model:=src/seekurjr_gazebo/urdf/seekurjr.u
 Execute ROS stereoprocessing core and rqt gui control application:
 
 ~~~
-ROS_NAMESPACE=mobileranger rosrun stereo_image_proc stereo_image_proc
-rosrun image_view stereo_view stereo:=/mobileranger image:=image_rect_color
+ROS_NAMESPACE=mobileranger/camera rosrun stereo_image_proc stereo_image_proc
+rosrun image_view stereo_view stereo:=/mobileranger/camera image:=image_rect_color
 rosrun rqt_gui rqt_gui 
 ~~~
 

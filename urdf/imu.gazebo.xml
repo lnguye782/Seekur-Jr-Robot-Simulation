@@ -1,18 +1,6 @@
 <?xml version="1.0"?>
 
-<robot name="seekurjr" 
-       xmlns:xi="http://www.w3.org/2001/XInclude"
-       xmlns:gazebo="http://playerstage.sourceforge.net/gazebo/xmlschema/#gz"
-       xmlns:model="http://playerstage.sourceforge.net/gazebo/xmlschema/#model"
-       xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
-       xmlns:body="http://playerstage.sourceforge.net/gazebo/xmlschema/#body"
-       xmlns:geom="http://playerstage.sourceforge.net/gazebo/xmlschema/#geom"
-       xmlns:joint="http://playerstage.sourceforge.net/gazebo/xmlschema/#joint"
-       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
-       xmlns:rendering="http://playerstage.sourceforge.net/gazebo/xmlschema/#rendering"
-       xmlns:renderable="http://playerstage.sourceforge.net/gazebo/xmlschema/#renderable"
-       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
-       xmlns:physics="http://playerstage.sourceforge.net/gazebo/xmlschema/#physics">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="seekurjr" >
 
   <gazebo reference="imu_link">
     
@@ -45,8 +33,8 @@
     <plugin filename="libgazebo_ros_imu.so" name="gazebo_ros_imu">
       <bodyName>imu_link</bodyName>
       <updateRate>1</updateRate>
-      <serviceName>mrp1_imu</serviceName>
-      <topicName>mrp1_imu</topicName>
+      <serviceName>imu</serviceName>
+      <topicName>/seekurjr/imu</topicName>
       <gaussianNoise>0</gaussianNoise>
       <xyzOffset>0 0 0</xyzOffset>
       <rpyOffset>0 0 -0.703220730592</rpyOffset>
