@@ -1,0 +1,241 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="seekurjr" >
+
+  <!-- define global properties -->
+  <property name="M_PI" value="3.1415926535897931" />
+  <property name="deg_to_rad" value="0.01745329251994329577" />
+  
+  <property name="wheel_base" value="0.425" />
+  
+  <property name="wheel_diameter" value="0.385" />
+  
+  <property name="wheel_separation" value="0.66" /> 
+
+<!-- Chassis -->
+	<link name="base_link">
+		<visual>
+			<origin xyz="0 0 0.177" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://seekurjr_gazebo/meshes/chassis.stl"/>
+			</geometry>
+			<material name="ChassisRed">
+				<color rgba="0.851 0.0 0.0 1.0"/>
+			</material>
+		</visual>
+		
+
+	<collision>
+		<origin xyz="0 0 0.177" rpy="0 0 0"/>
+		<geometry>
+			<mesh filename="package://seekurjr_gazebo/meshes/chassis.stl"/>
+		</geometry>
+	</collision>
+
+	<inertial>
+		<mass value="14.000000" />
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<inertia  ixx="0.333800" ixy="0"  ixz="0"  iyy="0.478300"  iyz="0"  izz="0.333800" />
+	</inertial>
+		
+	</link>
+
+<!-- Top -->
+	<link name="top_plate">
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://seekurjr_gazebo/meshes/top.stl"/>
+			</geometry>
+			<material name="TopBlack">
+					<color rgba="0.038 0.038 0.038 1.0"/>
+			</material>
+		</visual>
+	</link>
+
+	<joint name="base_top_joint" type="fixed">
+		<origin xyz="0.003 0 0.274" rpy="0 0 0"/>
+		<parent link="base_link"/>
+		<child link="top_plate"/>
+	</joint>
+	
+<!-- Axle~Hub~Wheel  -->
+  <xacro:macro name="wheel" params="prefix rx ry">
+	  <link name="${prefix}_axle">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+	        <mesh filename="package://seekurjr_gazebo/meshes/axle.stl"/>
+        </geometry>
+        <material name="AxleGrey">
+	        <color rgba="0.5 0.5 0.5 1"/>
+        </material>
+      </visual>
+	  </link>
+
+	  <joint name="${prefix}_axle_joint" type="continuous">
+		  <origin xyz="${rx*0.135} ${ry*0.156} 0.111" rpy="0 0 0"/>
+		  <parent link="base_link"/>
+		  <child link="${prefix}_axle"/>
+		  <axis xyz="0 1 0" />
+            <limit effort="100" velocity="100" />
+            <joint_properties damping="0.0" friction="0.0" />
+            <anchor xyz="0 0 0" />
+
+	  </joint>
+
+    <link name="${prefix}_hub">
+      <visual>
+		    <origin xyz="0 0 0" rpy="${ry * 1.57 - 1.57} 0 0"/>
+		    <geometry>
+			    <mesh filename="package://seekurjr_gazebo/meshes/hub.stl"/>
+		    </geometry>
+		    <material name="HubcapYellow">
+			    <color rgba="1.0 0.811 0.151 1.0"/>
+		    </material>
+	    </visual>
+	  </link>
+
+	  <joint name="${prefix}_hub_joint" type="fixed">
+		  <origin xyz="0 ${ry*0.041} 0" rpy="0 0 0"/>
+		  <parent link="${prefix}_axle"/>
+		  <child link="${prefix}_hub"/>
+	  </joint>
+
+	  <link name="${prefix}_wheel">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+	        <mesh filename="package://seekurjr_gazebo/meshes/wheel.stl"/>
+        </geometry>
+        <material name="WheelBlack">
+	        <color rgba="0.117 0.117 0.117 1"/>
+        </material>
+      </visual>
+ 	<collision>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<geometry>
+			<mesh filename="package://seekurjr_gazebo/meshes/wheel.stl"/>
+		</geometry>
+	</collision>     
+  <inertial>
+		<mass value="1.000000" />
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<inertia  ixx="1" ixy="0"  ixz="0"  iyy="1"  iyz="0"  izz="1" />
+	</inertial>
+	  </link>
+
+	  <joint name="${prefix}_wheel_joint" type="fixed">
+		  <origin xyz="0 0 0" rpy="0 0 0"/>
+		  <parent link="${prefix}_hub"/>
+		  <child link="${prefix}_wheel"/>
+	  </joint>
+  </xacro:macro>
+
+  <xacro:wheel prefix="front_left"  rx="1"  ry="1" />
+  <xacro:wheel prefix="front_right" rx="1"  ry="-1"/>
+  <xacro:wheel prefix="rear_left"   rx="-1" ry="1" />
+  <xacro:wheel prefix="rear_right"  rx="-1" ry="-1"/>
+  
+  
+<!-- Gazebo -->
+<!-- kp and kd for rubber -->
+<!--
+	<gazebo reference="front_right_wheel">
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+            <minDepth>0.001</minDepth>
+            <maxContacts>1</maxContacts>
+    <fdir1>0 1 0</fdir1>
+    <maxVel>10.0</maxVel>
+    <minDepth>0.00</minDepth>
+		<material>Gazebo/Grey</material>
+	</gazebo>
+
+	<gazebo reference="rear_right_wheel">
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+            <minDepth>0.001</minDepth>
+            <maxContacts>1</maxContacts>
+    <fdir1>0 1 0</fdir1>
+    <maxVel>10.0</maxVel>
+    <minDepth>0.00</minDepth>
+		<material>Gazebo/Grey</material>
+	</gazebo>
+
+	<gazebo reference="front_left_wheel">
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+            <minDepth>0.001</minDepth>
+            <maxContacts>1</maxContacts>
+    <fdir1>0 1 0</fdir1>
+    <maxVel>10.0</maxVel>
+    <minDepth>0.00</minDepth>
+		<material>Gazebo/Grey</material>
+	</gazebo>
+
+	<gazebo reference="rear_left_wheel">
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+            <minDepth>0.001</minDepth>
+            <maxContacts>1</maxContacts>
+    <fdir1>0 1 0</fdir1>
+    <maxVel>10.0</maxVel>
+    <minDepth>0.00</minDepth>
+		<material>Gazebo/Grey</material>
+	</gazebo>
+-->	
+       
+
+<gazebo>
+  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+    <updateRate>100.0</updateRate>
+    <robotNamespace>/seekurjr</robotNamespace>
+    <leftFrontJoint>front_left_axle_joint</leftFrontJoint>
+    <rightFrontJoint>front_right_axle_joint</rightFrontJoint>
+    <leftRearJoint>rear_left_axle_joint</leftRearJoint>
+    <rightRearJoint>rear_right_axle_joint</rightRearJoint>
+    <wheelSeparation>${wheel_separation}</wheelSeparation>
+    <wheelDiameter>${wheel_diameter}</wheelDiameter>
+    <robotBaseFrame>base_link</robotBaseFrame>
+    <torque>50</torque>
+    <topicName>cmd_vel</topicName>
+    <commandTopic>cmd_vel</commandTopic>
+    <odometryTopic>odom</odometryTopic>
+    <odometryFrame>odom</odometryFrame>
+
+    <broadcastTF>0</broadcastTF>
+
+    <max_force>50.0</max_force>
+  </plugin>
+</gazebo>
+
+
+<!--
+	<gazebo>
+		<plugin filename="libgazebo_ros_p3d.so" name="gazebo_ros_p3d">
+		<bodyName>base_link</bodyName>
+		<topicName>/ground_truth/state</topicName>
+		<alwaysOn>true</alwaysOn>
+		<updateRate>100.0</updateRate>
+		</plugin>
+	</gazebo>
+-->
+
+<!--
+  <gazebo>
+    <plugin filename="libgazebo_ros_control.so" name="ros_control">
+      <robotNamespace>/seekurjr</robotNamespace>
+    </plugin>
+  </gazebo>
+-->
+
+</robot>
