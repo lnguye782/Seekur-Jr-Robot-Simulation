@@ -113,7 +113,7 @@ ground right below base_link origin,navigation stack depends on this frame
         
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-				<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_left_side_wheel.stl" scale="1 1 1"/>
+				<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_left_side_wheel_low2.stl" scale="1 1 1"/>
         </geometry>
         
         <!--
@@ -129,18 +129,18 @@ ground right below base_link origin,navigation stack depends on this frame
 	
 	<collision> 
 		
-		<!--
+		
 		<origin xyz="0 0 0" rpy="0 0 0"/>
 		<geometry>
 		<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_left_side_wheel_low2.stl" scale="1 1 1"/>
 		</geometry>
-		-->
 		
+		<!--
 		<origin xyz="0 0.02 0" rpy="${M_PI/2} 0 0"/>
 		<geometry>
 		  <cylinder length="${0.1651-0.0051}" radius="${0.2032-0.0052}"/>
 		</geometry>
-		
+		-->
 		
 	</collision>   
 
@@ -151,7 +151,7 @@ ground right below base_link origin,navigation stack depends on this frame
         
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-				<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_left_side_wheel.stl" scale="1 1 1"/>
+				<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_left_side_wheel_low2.stl" scale="1 1 1"/>
         </geometry>
         
         <!--
@@ -167,18 +167,18 @@ ground right below base_link origin,navigation stack depends on this frame
       
 	<collision>
 	
-		<!--
+		
 		<origin xyz="0 0 0" rpy="0 0 0"/>
 		<geometry>
 		<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_left_side_wheel_low2.stl" scale="1 1 1"/>
 		</geometry>
-		-->
 		
+		<!--
 		<origin xyz="0 0.02 0" rpy="${M_PI/2} 0 0"/>
 		<geometry>
 		  <cylinder length="${0.1651-0.0051}" radius="${0.2032-0.0052}"/>
 		</geometry>
-		
+		-->
 		
 	</collision>
 	
@@ -194,7 +194,7 @@ ground right below base_link origin,navigation stack depends on this frame
       	
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-				<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_right_side_wheel.stl" scale="1 1 1"/>
+				<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_right_side_wheel_low2.stl" scale="1 1 1"/>
         </geometry>
         
         <!--
@@ -211,18 +211,18 @@ ground right below base_link origin,navigation stack depends on this frame
     
     <collision>
     
-		<!--
+		
 		<origin xyz="0 0 0" rpy="0 0 0"/>
 		<geometry>
-			<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_left_side_wheel_low2.stl" scale="1 1 1"/>
+			<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_right_side_wheel_low2.stl" scale="1 1 1"/>
 		</geometry>
-		-->
 		
+		<!--
 		<origin xyz="0 -0.02 0" rpy="${M_PI/2} 0 0"/>
 		<geometry>
 		  <cylinder length="${0.1651-0.0051}" radius="${0.2032-0.0052}"/>
 		</geometry>
-    
+    -->
     
     </collision>
     
@@ -239,7 +239,7 @@ ground right below base_link origin,navigation stack depends on this frame
       	
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-				<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_right_side_wheel.stl" scale="1 1 1"/>
+				<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_right_side_wheel_low2.stl" scale="1 1 1"/>
         </geometry>
         
         <!--
@@ -256,18 +256,18 @@ ground right below base_link origin,navigation stack depends on this frame
     
     <collision>
 	
-		<!--
+		
 		<origin xyz="0 0 0" rpy="0 0 0"/>
 		<geometry>
-		<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_left_side_wheel_low2.stl" scale="1 1 1"/>
+		<mesh filename="package://seekurjr_gazebo/meshes/seekurjr_right_side_wheel_low2.stl" scale="1 1 1"/>
 		</geometry>
-		-->
 		
+		<!--
 		<origin xyz="0 -0.02 0" rpy="${M_PI/2} 0 0"/>
 		<geometry>
 		  <cylinder length="${0.1651-0.0051}" radius="${0.2032-0.0052}"/>
 		</geometry>
-    
+    -->
     
     </collision> 
 
