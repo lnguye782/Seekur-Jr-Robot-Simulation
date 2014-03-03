@@ -10,6 +10,10 @@
       <update_rate>1000.0</update_rate>
       <imu>
         <noise>
+        
+        <type> none </type>
+        
+        <!--
           <type>gaussian</type>
           
           <rate>
@@ -24,6 +28,8 @@
             <bias_mean>0.1</bias_mean>
             <bias_stddev>0.001</bias_stddev>
           </accel>
+          -->
+          
         </noise>
       </imu>
     </sensor>
@@ -37,7 +43,10 @@
       <topicName>/seekurjr/imu</topicName>
       <gaussianNoise>0</gaussianNoise>
       <xyzOffset>0 0 0</xyzOffset>
+      <!--
       <rpyOffset>0 0 -0.703220730592</rpyOffset>
+      -->
+      <rpyOffset>0 0 0</rpyOffset>
     </plugin>     
   </gazebo>  
   

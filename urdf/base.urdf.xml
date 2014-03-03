@@ -2,6 +2,11 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="seekurjr" >
 
+
+<property name="wheel_mass" value="1.75" /> 
+
+
+
 <!-- BASE FOOTPRINT -->
 <!-- 
 base_footprint is a fictitious link(frame) that is on the 
@@ -104,7 +109,7 @@ ground right below base_link origin,navigation stack depends on this frame
 <link name="bl_wheel">
 
 	<inertial>
-		<mass value="1.75" />
+		<mass value="${wheel_mass}" />
 		<origin xyz="0 0 0" rpy="0 0 0"/>
 		<inertia ixx="0.000195" ixy="0" ixz="0" iyy="0.000327" iyz="0" izz="0.000195" />
 	</inertial>
@@ -183,7 +188,7 @@ ground right below base_link origin,navigation stack depends on this frame
 	</collision>
 	
     <inertial>
-      <mass value="1.75" />
+      <mass value="${wheel_mass}" />
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <inertia ixx="0.000195" ixy="0" ixz="0" iyy="0.000327" iyz="0" izz="0.000195" />
     </inertial>
@@ -227,7 +232,7 @@ ground right below base_link origin,navigation stack depends on this frame
     </collision>
     
     <inertial>
-      <mass value="1.75" />
+      <mass value="${wheel_mass}" />
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <inertia ixx="0.000195" ixy="0" ixz="0" iyy="0.000327" iyz="0" izz="0.000195" />
     </inertial>
@@ -273,7 +278,7 @@ ground right below base_link origin,navigation stack depends on this frame
 
     
     <inertial>
-      <mass value="1.75" />
+      <mass value="${wheel_mass}" />
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <inertia ixx="0.000195" ixy="0" ixz="0" iyy="0.000327" iyz="0" izz="0.000195" />
     </inertial>

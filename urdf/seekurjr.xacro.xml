@@ -12,14 +12,44 @@
   
   <!-- <property name="wheel_separation" value="0.66357" /> -->
   <property name="wheel_separation" value="0.66" /> 
-   
+  
+  
+  
+  <!--
+SeekurJr Base
+
+m=77; h=0.5; w=0.84; d=1.05; 
+
+length of the robot with laser rangefinder, etc 1.05m
+width of the robot with wheels, etc 0.84m
+height of the robot with all stuff 0.5m
+
+-->
+<property name="M_PI" value="3.1415926535897931" />
+<property name="mass" value="70.0" />
+<property name="x" value="1.05" />
+<property name="y" value="0.6" />
+<property name="z" value="0.4" />
+
+<property name="mass_w" value="1.75" />
+<property name="radius" value="0.19" />
+<property name="length" value="0.164" />
+
+<property name="ground_clearance" value="0.1" />
+  
+  <!--
   <xacro:include filename="$(find seekurjr_gazebo)/urdf/base.urdf.xml" />
+  -->
+  <xacro:include filename="$(find seekurjr_gazebo)/urdf/base_minimal.urdf.xml" />
+  
   <xacro:include filename="$(find seekurjr_gazebo)/urdf/base.gazebo.xml" />
   
   <!--
 	<xacro:include filename="$(find seekurjr_gazebo)/urdf/lms1xx.urdf.xml" />
 	<xacro:include filename="$(find seekurjr_gazebo)/urdf/lms1xx.gazebo.xml" />
+	-->
 	
+	<!--
   <xacro:include filename="$(find seekurjr_gazebo)/urdf/stereocamera.urdf.xml" />
   <xacro:include filename="$(find seekurjr_gazebo)/urdf/stereocamera.gazebo.xml" /> 
   -->
