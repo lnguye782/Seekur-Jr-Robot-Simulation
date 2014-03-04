@@ -16,12 +16,31 @@ localmaster
 
 ~~~
 
+or
+
+~~~{.bash}
+source ~/rosws/setup.bash
+localmaster
+
+~~~
+
 Simulator start:
 
 ~~~{.bash}
 roscore
 
 rosrun gazebo_ros gazebo
+
+roslaunch seekurjr_gazebo spawn_model.xml
+
+roslaunch seekurjr_control steering.launch
+
+rosrun seekurjr_control test_trajectory
+
+roslaunch seekurjr_gazebo rqt_imu.xml
+
+rosrun rqt_graph rqt_graph
+
 ~~~
 
 Spawn robot model:
