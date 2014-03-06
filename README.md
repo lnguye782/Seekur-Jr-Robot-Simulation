@@ -41,6 +41,10 @@ roslaunch seekurjr_gazebo rqt_imu.xml
 
 rosrun rqt_graph rqt_graph
 
+rosrun rviz rviz -d src/seekurjr_gazebo/urdf.rviz 
+
+roslaunch seekurjr_gazebo xacrodisplay.xml model:=src/seekurjr_gazebo/urdf/seekurjr.xacro.xml
+
 ~~~
 
 Spawn robot model:

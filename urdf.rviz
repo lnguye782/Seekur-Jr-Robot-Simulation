@@ -9,9 +9,9 @@ Panels:
         - /RobotModel1/Links1
         - /RobotModel1/Links1/base_link1
         - /TF1/Frames1
-        - /Imu1/Box properties1
         - /Imu1/Axes properties1
-      Splitter Ratio: 0.5
+        - /Imu1/Acceleration properties1
+      Splitter Ratio: 0.758389
     Tree Height: 601
   - Class: rviz/Selection
     Name: Selection
@@ -31,7 +31,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: LaserScan
+    SyncSource: ""
 Visualization Manager:
   Class: ""
   Displays:
@@ -63,6 +63,11 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        base_footprint:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         base_link:
           Alpha: 1
           Show Axes: true
@@ -78,15 +83,6 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        camera_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        camera_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         fl_wheel:
           Alpha: 1
           Show Axes: false
@@ -98,11 +94,6 @@ Visualization Manager:
           Show Trail: false
           Value: true
         imu_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        lms1xx_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -118,15 +109,15 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
+        base_footprint:
+          Value: true
         base_link:
+          Value: true
+        base_stabilized:
           Value: true
         bl_wheel:
           Value: true
         br_wheel:
-          Value: true
-        camera_link:
-          Value: true
-        camera_optical_frame:
           Value: true
         fl_wheel:
           Value: true
@@ -134,7 +125,7 @@ Visualization Manager:
           Value: true
         imu_link:
           Value: true
-        lms1xx_link:
+        world:
           Value: true
       Marker Scale: 1
       Name: TF
@@ -142,22 +133,21 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        base_link:
-          bl_wheel:
-            {}
-          br_wheel:
-            {}
-          camera_link:
-            camera_optical_frame:
+        world:
+          base_footprint:
+            base_link:
+              bl_wheel:
+                {}
+              br_wheel:
+                {}
+              fl_wheel:
+                {}
+              fr_wheel:
+                {}
+              imu_link:
+                {}
+            base_stabilized:
               {}
-          fl_wheel:
-            {}
-          fr_wheel:
-            {}
-          imu_link:
-            {}
-          lms1xx_link:
-            {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -190,11 +180,11 @@ Visualization Manager:
       Use rainbow: true
       Value: true
     - Acceleration properties:
-        Acc. vector alpha: 1
-        Acc. vector color: 255; 0; 0
-        Acc. vector scale: 1
+        Acc. vector alpha: 0.5
+        Acc. vector color: 255; 255; 0
+        Acc. vector scale: 0.05
         Derotate acceleration: true
-        Enable acceleration: false
+        Enable acceleration: true
       Axes properties:
         Axes scale: 1
         Enable axes: true
@@ -208,7 +198,7 @@ Visualization Manager:
       Class: rviz_imu_plugin/Imu
       Enabled: true
       Name: Imu
-      Topic: /mrp1_imu
+      Topic: /seekurjr/imu
       Value: true
   Enabled: true
   Global Options:
@@ -234,17 +224,17 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 2.00913
+      Distance: 6.85069
       Focal Point:
-        X: 0.129688
-        Y: -0.038621
-        Z: 0.0712444
+        X: -0.0307775
+        Y: -0.229296
+        Z: -0.0478801
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 1.0604
+      Pitch: 0.290401
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 4.56043
+      Yaw: 3.26542
     Saved: ~
 Window Geometry:
   Displays:
@@ -262,5 +252,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1216
-  X: 312
+  X: 298
   Y: 173
