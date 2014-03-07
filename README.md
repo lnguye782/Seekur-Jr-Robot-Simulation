@@ -59,7 +59,7 @@ roslaunch seekurjr_gazebo display.xml model:=src/seekurjr_gazebo/urdf/seekurjr.u
 
 Execute ROS stereoprocessing core and rqt gui control application:
 
-~~~
+~~~{.bash}
 ROS_NAMESPACE=mobileranger/camera rosrun stereo_image_proc stereo_image_proc
 rosrun image_view stereo_view stereo:=/mobileranger/camera image:=image_rect_color
 rosrun rqt_gui rqt_gui 
@@ -68,6 +68,31 @@ rosrun rqt_gui rqt_gui
 Sample session can be seen by following video link below.
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/Nogzb74IlV0/0.jpg)](https://www.youtube.com/watch?v=Nogzb74IlV0)
+
+# Experiment
+
+~~~{.bash}
+roscore
+
+rosrun gazebo_ros gazebo
+
+roslaunch seekurjr_gazebo spawn_model.xml
+
+roslaunch seekurjr_control steering.launch
+
+roslaunch seekurjr_gazebo imu.xml
+
+roslaunch seekurjr_gazebo rqt_imu.xml
+
+
+rosrun rviz rviz -d src/seekurjr_gazebo/urdf.rviz 
+
+
+
+ROS_NAMESPACE=mobileranger/camera rosrun stereo_image_proc stereo_image_proc
+rosrun image_view stereo_view stereo:=/mobileranger/camera image:=image_rect_color
+
+~~~
 
 
 # Inertia
