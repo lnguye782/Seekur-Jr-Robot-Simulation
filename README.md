@@ -87,9 +87,43 @@ roslaunch seekurjr_gazebo rqt_imu.xml
 
 rosrun rviz rviz -d src/seekurjr_gazebo/urdf.rviz 
 
-
+roslaunch seekurjr_gazebo robot_pose_ekf.xml
 
 ROS_NAMESPACE=mobileranger/camera rosrun stereo_image_proc stereo_image_proc
+rosrun image_view stereo_view stereo:=/mobileranger/camera image:=image_rect_color
+
+~~~
+
+With launch files:
+
+~~~{.bash}
+roscore
+
+	# simulator
+rosrun gazebo_ros gazebo
+
+	# load model
+roslaunch seekurjr_gazebo spawn_model.xml
+
+	# manual model control
+roslaunch seekurjr_control steering.launch
+
+	# imu
+roslaunch seekurjr_gazebo imu.xml
+
+	# stereo core 
+roslaunch seekurjr_gazebo stereocore.xml
+
+	# laser nodes
+roslaunch seekurjr_gazebo laser.xml
+roslaunch seekurjr_gazebo pcl_conv.xml
+
+	# map server
+roslaunch seekurjr_gazebo octomap_server.xml
+
+	# visualisation
+rosrun rviz rviz -d src/seekurjr_gazebo/urdf.rviz 
+roslaunch seekurjr_gazebo rqt_imu.xml
 rosrun image_view stereo_view stereo:=/mobileranger/camera image:=image_rect_color
 
 ~~~

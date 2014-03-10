@@ -9,7 +9,13 @@
     
 	  <param name="gain" type="double" value="0.1" />
 	  <param name="zeta" type="double" value="0.1" />
-	   
+	  
+	  <!--
+	  <param name="base_stabilized_frame" type="string" value="base_stabilized" />
+	  -->
+	  <param name="base_stabilized_frame" type="string" value="base_link" />
+    <param name="base_frame" type="string" value="base_footprint" />
+    
     <remap from="/imu/data_raw" to="/seekurjr/imu_raw" />
 		<remap from="/imu/data" to="/seekurjr/imu" />
 
