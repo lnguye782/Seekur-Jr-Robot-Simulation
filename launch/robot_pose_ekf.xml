@@ -11,8 +11,8 @@
     <param name="debug" value="false"/>
     <param name="self_diagnose" value="false"/>
     
-     <remap from="imu_data" to="/seekurjr/imu" />
-     <remap from="odom" to="/seekurjr/pose" />
+     <remap from="imu_data" to="/seekurjr/imu_raw" />
+     <remap from="odom" to="/seekurjr/odom_raw" />
      <remap from="vo" to="/mono_odometer/pose/pose" />
   </node>
 </launch>

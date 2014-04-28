@@ -6,8 +6,8 @@
   <!--<include file="$(find hector_gazebo_worlds)/launch/rolling_landscape_120m.launch"/> -->
   <!-- <arg name="world" value="$(find hector_gazebo_worlds)/worlds/rolling_landscape_120m.world"/> -->
     <arg name="world_name" default="worlds/empty.world"/> <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable -->
-    <arg name="world" default="worlds/willowgarage.world"/> 
-  <!-- <arg name="world" value="$(find hector_gazebo_worlds)/worlds/willow_garage.world"/> -->
+  <!-- <arg name="world" default="worlds/willow_garage.world"/> -->
+  <arg name="world" value="$(find hector_gazebo_worlds)/worlds/willow_garage_map.world"/>
   <!--  <arg name="world" default=""/> -->
   <arg name="gui" default="true"/>
   

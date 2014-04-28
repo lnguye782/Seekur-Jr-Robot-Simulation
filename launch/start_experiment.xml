@@ -7,7 +7,11 @@
 
 <include file="$(find seekurjr_gazebo)/launch/laser.xml"/>
 
+<!-- conflict with EKF -->
+
 <include file="$(find seekurjr_gazebo)/launch/imu.xml"/>
+
+
 
 <include file="$(find seekurjr_gazebo)/launch/pcl_conv.xml"/>
 

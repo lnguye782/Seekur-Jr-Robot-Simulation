@@ -13,6 +13,7 @@
 	  <!--
 	  <param name="base_stabilized_frame" type="string" value="base_stabilized" />
 	  -->
+	  <param name="fixed_frame" type="string" value="odom" />
 	  <param name="base_stabilized_frame" type="string" value="base_link" />
     <param name="base_frame" type="string" value="base_footprint" />
     

@@ -26,12 +26,12 @@
     </link>
 
   
-    <link name="camera_optical_frame"/>
+    <link name="left_camera_optical_frame"/>
    
     <joint name="camera_optical_joint" type="fixed">
       <origin xyz="0 0 0" rpy="-1.570796 0.0 -1.570796" />
       <parent link="camera_link" />
-      <child link="camera_optical_frame"/>
+      <child link="left_camera_optical_frame"/>
     </joint>
 
   <joint name="camera_joint" type="fixed">
