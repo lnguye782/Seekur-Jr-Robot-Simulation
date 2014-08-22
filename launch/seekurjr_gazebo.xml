@@ -26,7 +26,7 @@
      
   <!-- Spawn simulated seekurjr -->
   <include file="$(find seekurjr_gazebo)/launch/spawn_model.xml" >
-    <arg name="model" value="$(find seekurjr_gazebo)/urdf/seekurjr.xacro.xml"/> 
+    <arg name="model" value="$(find seekurjr_gazebo)/urdf/seekurjr.urdf"/>
   </include>
   
   <!-- Start rviz visualization with preset config -->
