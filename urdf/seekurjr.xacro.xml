@@ -17,7 +17,7 @@ height of the robot with all stuff 0.5m
 
 <property name="base_mass" value="70.0" />
 <property name="base_x_size" value="1.05" />
-<property name="base_y_size" value="0.60" />
+<property name="base_y_size" value="0.64" />
 <property name="base_z_size" value="0.4" />
 
 <property name="length" value="0.164" />
