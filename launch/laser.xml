@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<launch>
+
+<arg name="scan_topic" default="scan" />
+
+<!-- Sick LMS100 transforms -->
+
+<!--
+<node name="tf_map_to_base_link" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 map base_link 20" />	
+<node name="tf_base_link_to_base_laser_link" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 base_link base_laser_link 20" />
+-->
+
+<!-- Sick LMS100 laser rangefinder -->
+<!--
+<node name="base_laser" pkg="LMS1xx" type="LMS100" respawn="true" output="screen">
+	<remap from="scan" to="scan_raw"/>
+	<param name="host" type="string" value="192.168.0.1" />
+	<param name="frame_id" type="string" value="/laser_link" />
+</node>
+-->
+
+<!-- Laser Pipeline -->
+<node type="laser_scan_assembler" pkg="laser_assembler" name="lms1xx_assembler">
+    <remap from="scan" to="/seekurjr/lms1xx/scan"/>
+    <param name="max_scans" type="int" value="400" />
+    <param name="fixed_frame" type="string" value="/base_link" />
+</node>
+
+<!-- Point cloud publisher -->
+<node name="periodic_snapshotter" pkg="laser_assembler" type="periodic_snapshotter" respawn="false" output="screen" />
+
+
+<!-- p2os node driver -->
+<!--
+<node name="seekurjr" pkg="p2os_driver" type="p2os_node" respawn="false" output="screen">
+	<remap from="pose" to="odom"/>
+</node>
+-->
+
+</launch>

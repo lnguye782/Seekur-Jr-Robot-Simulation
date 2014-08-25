@@ -5,12 +5,12 @@
   <!-- Start Gazebo with wg world running in (max) realtime -->
   <!--<include file="$(find hector_gazebo_worlds)/launch/rolling_landscape_120m.launch"/> -->
   <!-- <arg name="world" value="$(find hector_gazebo_worlds)/worlds/rolling_landscape_120m.world"/> -->
-  <!--<arg name="world_name" default="worlds/empty.world"/> -->
+  <!--<arg name="world" default="worlds/empty.world"/>-->
   <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable -->
-  <!-- <arg name="world" default="worlds/willow_garage.world"/> -->
+  <!--<arg name="world" default="worlds/willow_garage.world"/>-->
   <!--<arg name="world" value="$(find hector_gazebo_worlds)/worlds/willow_garage_map.world"/>-->
   <!-- <arg name="world" default="worlds/willow_garage_map.world"/> -->
-  <arg name="world" default="$(find seekurjr_gazebo)/worlds/map2.world"/>
+  <arg name="world" default="$(find seekurjr_gazebo)/worlds/map.world"/>
   <!--  <arg name="world" default=""/> -->
   <arg name="gui" default="true"/>
   
@@ -26,10 +26,12 @@
      
   <!-- Spawn simulated seekurjr -->
   <include file="$(find seekurjr_gazebo)/launch/spawn_model.xml" >
-    <arg name="model" value="$(find seekurjr_gazebo)/urdf/seekurjr.urdf"/>
+   
+   <arg name="model" value="$(find seekurjr_gazebo)/urdf/seekurjr.xacro.xml"/>
+   <!-- <arg name="model" value="$(find seekurjr_gazebo)/meshes/pioneer3at/pioneer3at.xacro"/>-->
   </include>
   
   <!-- Start rviz visualization with preset config -->
-  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find seekurjr_gazebo)/urdf.rviz"/>
+ <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find seekurjr_gazebo)/urdf.rviz"/>-->
    
 </launch>

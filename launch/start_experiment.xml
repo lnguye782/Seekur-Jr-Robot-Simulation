@@ -8,9 +8,9 @@
 <include file="$(find seekurjr_gazebo)/launch/laser.xml"/>
 
 <!-- conflict with EKF -->
-
+<!--
 <include file="$(find seekurjr_gazebo)/launch/imu.xml"/>
-
+-->
 
 
 <include file="$(find seekurjr_gazebo)/launch/pcl_conv.xml"/>
@@ -19,12 +19,13 @@
 
 
 <!-- robot_pose_ekf slam node -->
+
 <include file="$(find seekurjr_gazebo)/launch/robot_pose_ekf.xml"/>
 
 
-
+<!--
 <include file="$(find seekurjr_control)/launch/steering.xml"/>
-
+-->
 
 <!--
 <include file="$(find seekurjr_run)/launch/rqt_imu.xml"/>

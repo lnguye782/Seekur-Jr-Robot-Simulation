@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+
+<!-- Octomap Server -->
+<node pkg="pcd_conv" type="pcd_conv" name="pcd_conv">
+
+    <param name="pcloud_in" type="string" value="/assembled_cloud" />
+    <param name="pcloud2_out" type="string" value="/assembled_cloud2" />
+
+   <remap from="pcloud_in" to="/assembled_cloud" />
+   <remap from="pcloud2_out" to="/assembled_cloud2" />
+   
+</node>
+
+ </launch>
