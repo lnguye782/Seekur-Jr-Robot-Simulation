@@ -2,7 +2,7 @@
 <launch>
 
 
-
+<arg name="tf_prefix" default="$(optenv ROS_NAMESPACE)"/>
 
 <!-- Octomap Server -->
 <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
@@ -18,12 +18,9 @@
     <!-- data source to integrate (PointCloud2) -->
    <remap from="cloud_in" to="/assembled_cloud2" />
 
-</node>
+     <param name="tf_prefix" type="string" value="$(arg tf_prefix)" />
+   </node>
 
-<!-- Point cloud publisher -->
-<!-- use here or in remote_laser -->
-<!--
-<node name="periodic_snapshotter" pkg="laser_assembler" type="periodic_snapshotter" respawn="false" output="screen" />
--->
+
 
  </launch>

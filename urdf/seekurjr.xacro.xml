@@ -44,21 +44,13 @@ height of the robot with all stuff 0.5m
 <xacro:include filename="$(find seekurjr_gazebo)/urdf/simple/materials.urdf.xacro" />
   
 <xacro:include filename="$(find seekurjr_gazebo)/urdf/base.urdf.xml" />
-<xacro:include filename="$(find seekurjr_gazebo)/urdf/base.gazebo.xml" />
-  
 <xacro:include filename="$(find seekurjr_gazebo)/urdf/lms1xx.urdf.xml" />
-<xacro:include filename="$(find seekurjr_gazebo)/urdf/lms1xx.gazebo.xml" />
-
-<xacro:include filename="$(find seekurjr_gazebo)/urdf/stereocamera.urdf.xml" />
-<xacro:include filename="$(find seekurjr_gazebo)/urdf/stereocamera.gazebo.xml" /> 
-
 <xacro:include filename="$(find seekurjr_gazebo)/urdf/imu.urdf.xml" />
-<xacro:include filename="$(find seekurjr_gazebo)/urdf/imu.gazebo.xml" />
-	
-	
+<xacro:include filename="$(find seekurjr_gazebo)/urdf/stereocamera.urdf.xml" />
+
+
 	<!--
   <xacro:include filename="$(find seekurjr_gazebo)/urdf/bumpers.urdf.xml" />
-	<xacro:include filename="$(find seekurjr_gazebo)/urdf/bumpers.gazebo.xml" />
 	-->
 	
 </robot>

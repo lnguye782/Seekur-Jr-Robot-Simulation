@@ -31,5 +31,27 @@
          </collision>
        </link>
 
+
+<gazebo reference="front_top_left_bumper_link">
+
+      <selfCollide>false</selfCollide>
+      <sensor type="contact" name="simple_collision_sensor">
+        <always_on>true</always_on>
+        <update_rate>100.0</update_rate>
+        <contact>
+          <collision>front_top_left_bumper_collision</collision>
+          <topic>front_top_left_bumper_contact</topic>
+        </contact>
+
+  <plugin name="front_top_left_gazebo_ros_bumper_controller" filename="libgazebo_ros_bumper.so">
+    <alwaysOn>true</alwaysOn>
+    <updateRate>100.0</updateRate>
+    <bumperTopicName>front_top_left_bumper_contact</bumperTopicName>
+    <frameName>base_link</frameName>
+  </plugin>
+
+  </sensor>
+</gazebo>
+
 </robot>
 
