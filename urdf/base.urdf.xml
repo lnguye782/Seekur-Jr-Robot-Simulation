@@ -144,8 +144,17 @@
   <wheel fb="back" lr="right" parent="base_link" translateX="-1" translateY="-1" flipY="-2"/>
   <wheel fb="back" lr="left" parent="base_link" translateX="-1" translateY="1" flipY="0"/>
 
+
 <gazebo>
+
   <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+
+<!--
+   <plugin name="skid_steer_drive_controller" filename="libdiffdrive_plugin_multi_wheel.so">
+   <leftJoints>front_left_wheel_joint back_left_wheel_joint</leftJoints>
+   <rightJoints>front_right_wheel_joint back_right_wheel_joint</rightJoints>
+   <publishOdometryTf>0</publishOdometryTf>
+-->
 	<rosDebugLevel>Debug</rosDebugLevel>
 <!--    <robotNamespace>/seekurjr</robotNamespace>-->
      <publishWheelTF>false</publishWheelTF>
