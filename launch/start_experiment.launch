@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<launch>
+
+	<arg name="robot" default="seekurjr" />
+	<arg name="id" default="0" />
+	<!--<param name="/use_sim_time" value="true" />-->	
+	<arg name="tf_prefix" default="seekurjr" />
+	<arg name="gazebo_gui" default="false"/>
+	<arg name="gui" default="true"/>
+	<arg name="ctrl" default="false"/>
+	
+	<param name="use_sim_time" value="true" />
+	 
+	<param name="tf_prefix" value="$(arg tf_prefix)" /> 
+		
+	<include file="$(find seekurjr_gazebo)/launch/seekurjr_gazebo.launch">
+		<arg name="tf_prefix" value="$(arg tf_prefix)" />
+		<arg name="gazebo_gui" value="$(arg gazebo_gui)"/>
+		<arg name="gui" value="$(arg gui)"/>
+	</include>
+
+<!--
+		<include file="$(find seekurjr_gazebo)/launch/stereocore.launch">
+			<arg name="tf_prefix" value="$(arg tf_prefix)" />
+	    </include> 
+	    
+		<include file="$(find seekurjr_gazebo)/launch/laser.launch">
+			<arg name="tf_prefix" value="$(arg tf_prefix)" />
+	    </include> 
+-->	
+		<!-- conflict with EKF -->
+		<!--
+		<include file="$(find seekurjr_gazebo)/launch/imu.launch"/>
+		-->
+<!--		
+		<include file="$(find seekurjr_gazebo)/launch/pcl_conv.launch">
+			<arg name="tf_prefix" value="$(arg tf_prefix)" />
+	    </include> 
+		
+		<include file="$(find seekurjr_gazebo)/launch/octomap_server.launch">
+			<arg name="tf_prefix" value="$(arg tf_prefix)" />
+	    </include> 
+-->		
+		<!-- robot_pose_ekf slam node -->
+		<include file="$(find seekurjr_gazebo)/launch/robot_pose_ekf.launch">
+			<arg name="tf_prefix" value="$(arg tf_prefix)" />
+	    </include> 
+	  
+	  <group if="$(arg ctrl)">
+	  	<include file="$(find seekurjr_control)/launch/trajectory.launch"/>
+	  </group>
+	  
+	  <include file="$(find seekurjr_control)/launch/teleop.launch">
+	  	<arg name="id" value="$(arg id)" />
+	  	<arg name="cmd_vel" value="/$(arg robot)/cmd_vel"/>
+	  </include>
+		
+		<!--
+		<include file="$(find seekurjr_control)/launch/steering.launch"/>
+		-->
+		<!--
+		<include file="$(find seekurjr_run)/launch/rqt_imu.launch"/>
+		-->
+		<!--
+		<include file="$(find seekurjr_run)/launch/record_experiment.launch"/>
+		-->
+
+  
+</launch>
+
