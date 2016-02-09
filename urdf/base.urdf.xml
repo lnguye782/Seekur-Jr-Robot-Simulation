@@ -201,6 +201,7 @@
   <gazebo>
     <plugin filename="libgazebo_ros_control.so" name="ros_control">
       <!--<robotNamespace>/seekurjr</robotNamespace>-->
+      <robotParam>seekurjr_description</robotParam>
     </plugin>
   </gazebo>
 

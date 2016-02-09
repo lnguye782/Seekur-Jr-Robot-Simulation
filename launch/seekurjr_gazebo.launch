@@ -10,8 +10,11 @@
   <!--<arg name="world" default="worlds/willow_garage.world"/>-->
   <!--<arg name="world" value="$(find hector_gazebo_worlds)/worlds/willow_garage_map.world"/>-->
   <!-- <arg name="world" default="worlds/willow_garage_map.world"/> -->
-  <arg name="world" default="$(find seekurjr_gazebo)/worlds/map.world"/>
+  <!--<arg name="world" default="$(find seekurjr_gazebo)/worlds/map.world"/>-->
   <!--  <arg name="world" default=""/> -->
+  
+  
+  <arg name="world" default="$(find seekurjr_gazebo)/worlds/map.world"/>
   
   <arg name="tf_prefix" default="$(optenv ROS_NAMESPACE)"/> 
  <!-- <arg name="tf_prefix" default="seekurjr"/> -->
