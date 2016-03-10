@@ -1,6 +1,6 @@
 <package>
   <name>seekurjr_gazebo</name>
-  <version>0.3.0</version>
+  <version>0.3.5</version>
   <description>seekurjr_gazebo contains URDF xacro macros for SeekurJr.</description>
   <maintainer email="kpykcb@gmail.com">Oleksandr Lavrushchenko</maintainer>
 
@@ -11,16 +11,12 @@
 
   <author email="kpykcb@gmail.com">Oleksandr Lavrushchenko</author>
 
-  <!-- Dependencies which this package needs to build itself. -->
   <buildtool_depend>catkin</buildtool_depend>
-  
   <build_depend>urdf</build_depend>
-  <!-- Dependencies needed to compile this package. -->
+  <!-- <build_depend>gazebo_ros_pkgs</build_depend> -->
 
-  <!-- Dependencies needed after this package is compiled. -->
   <run_depend>xacro</run_depend>
-
   <run_depend>urdf</run_depend>
-  <!-- Dependencies needed only for running tests. -->
+  <run_depend>gazebo_ros_pkgs</run_depend>
 
 </package>
