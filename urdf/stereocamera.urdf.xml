@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="seekurjr" >
-       
-    <link name="camera_link">
+
+<xacro:macro name="eaglecam" params="id ec_xyz ec_rpy">
+
+    <link name="ec${id}_link">
       <inertial>
         <mass value="0.001" />
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -25,29 +27,28 @@
       </collision>
     </link>
 
-  
-    <link name="left_camera_optical_frame"/>
-   
-    <joint name="camera_optical_joint" type="fixed">
+    <link name="left_ec${id}_optical_frame"/>
+
+    <joint name="ec${id}_optical_joint" type="fixed">
       <origin xyz="0 0 0" rpy="-1.570796 0.0 -1.570796" />
-      <parent link="camera_link" />
-      <child link="left_camera_optical_frame"/>
+      <parent link="ec${id}_link" />
+      <child link="left_ec${id}_optical_frame"/>
     </joint>
 
-  <joint name="camera_joint" type="fixed">
+  <joint name="ec${id}_joint" type="fixed">
     <axis xyz="1 0 0"/> <!-- 0 1 0 -->
-    <origin xyz="0.42 0 0.41" rpy="0 0 0"/>
+    <origin xyz="${ec_xyz}" rpy="${ec_rpy}"/>
     <parent link="base_link"/>
-    <child link="camera_link"/>
+    <child link="ec${id}_link"/>
   </joint>
 
-  <gazebo reference="camera_link">
-    <sensor type="multicamera" name="stereo_camera">
-    
+  <gazebo reference="ec${id}_link">
+    <sensor type="multicamera" name="stereo_ec${id}">
+
       <update_rate>30.0</update_rate>
       <visualize>true</visualize>
-      
-      <camera name="left">
+
+      <camera name="left0">
         <horizontal_fov>1.3962634</horizontal_fov>
         <image>
           <width>752</width>
@@ -64,8 +65,8 @@
           <stddev>0.007</stddev>
         </noise>
       </camera>
-      
-      <camera name="right">
+
+      <camera name="right0">
         <pose>0 -0.07 0 0 0 0</pose>
         <horizontal_fov>1.3962634</horizontal_fov>
         <image>
@@ -83,15 +84,15 @@
           <stddev>0.007</stddev>
         </noise>
       </camera>
-      
-      <plugin name="stereo_camera_controller" filename="libgazebo_ros_multicamera.so">
+
+      <plugin name="stereo_ec${id}_controller" filename="libgazebo_ros_multicamera.so">
       	<!--<robotNamespace>/seekurjr</robotNamespace>-->
         <alwaysOn>true</alwaysOn>
         <updateRate>15.0</updateRate>
-        <cameraName>eagle0</cameraName>
+        <cameraName>eagle${id}</cameraName>
         <imageTopicName>image_raw</imageTopicName>
-        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-        <frameName>left_camera_optical_frame</frameName>
+        <cameraInfoTopicName>ec_info</cameraInfoTopicName>
+        <frameName>left_ec${id}_optical_frame</frameName>
 
         <!--<rightFrameName>right_camera_optical_frame</rightFrameName>-->
         <hackBaseline>0.07</hackBaseline>
@@ -105,4 +106,11 @@
     </sensor>
   </gazebo>
 
+</xacro:macro>
+
+# comment test
+	<eaglecam id="F" ec_xyz="0.42 0 0.41" ec_rpy="0 0 0"/>
+	<eaglecam id="R" ec_xyz="0.42 0.1 0.41" ec_rpy="0 0 ${M_PI/4}"/>
+	<eaglecam id="L" ec_xyz="0.42 -0.1 0.41" ec_rpy="0 0 ${-M_PI/4}"/>
+	
 </robot>
