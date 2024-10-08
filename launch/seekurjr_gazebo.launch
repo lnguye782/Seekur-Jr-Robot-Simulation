@@ -14,7 +14,7 @@
   <!--  <arg name="world" default=""/> -->
 
 
-  <arg name="world" default="$(find seekurjr_gazebo)/worlds/map.world"/>
+  <arg name="world" default="$(find seekurjr_gazebo)/worlds/empty.world"/>
 
   <arg name="tf_prefix" default="$(optenv ROS_NAMESPACE)"/>
  <!-- <arg name="tf_prefix" default="seekurjr"/> -->
@@ -34,8 +34,8 @@
 		<arg name="x" default="0.0"/>
 		<arg name="y" default="0.0"/>
 		<arg name="z" default="0.2"/>
-		<arg name="model" default="$(find seekurjr_gazebo)/urdf/seekurjr.xacro.xml"/>
-		<arg name="name" default="seekurjr"/>
+		<arg name="model" value="$(find seekurjr_gazebo)/urdf/seekurjr.xacro.xml"/>
+		<arg name="name" value="seekurjr"/>
     </include>
 
 
